@@ -1,6 +1,6 @@
 {
   "name": "piou-piou/agri-gestion-bundle",
-  "license": "GNU Affero GPL V3.0",
+  "license": "AGPL-3.0-or-later",
   "type": "symfony-bundle",
   "description": "agri-gestion-bundle it offer the possibility to manager you parcels, providers and invoices !",
   "homepage": "https://github.com/Piou-piou/AgriGestionBundle",
