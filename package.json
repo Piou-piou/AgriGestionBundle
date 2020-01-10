@@ -1,0 +1,35 @@
+{
+  "name": "AgriGestionBundle",
+  "private": false,
+  "version": "0.0.1",
+  "description": "Agri gestion bundle",
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.28.2",
+    "autoprefixer": "^8.6.5",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "node-sass": "^4.5.3",
+    "progress-bar-webpack-plugin": "^1.11.0",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.18.2",
+    "uglifyjs-webpack-plugin": "^1.2.7",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "ribs-core": "0.0.9-4",
+    "ribs-flash-message": "*",
+    "ribs-popup": "*",
+    "ribs-admin-bundle-templates": "^1.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Piou-piou/AgriGestionBundle"
+  },
+  "bugs": "https://github.com/Piou-piou/AgriGestionBundle/issues",
+  "author": "Anthony Pilloud",
+  "license": "GNuaffero GPL V3.0"
+}

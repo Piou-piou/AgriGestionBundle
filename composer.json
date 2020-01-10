@@ -1,0 +1,49 @@
+{
+  "name": "piou-piou/agri-gestion-bundle",
+  "license": "GNU Affero GPL V3.0",
+  "type": "symfony-bundle",
+  "description": "agri-gestion-bundle it offer the possibility to manager you parcels, providers and invoices !",
+  "homepage": "https://github.com/Piou-piou/AgriGestionBundle",
+  "authors": [
+    {
+      "name": "Anthony Pilloud",
+      "email": "pilloud.anthony@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "gedmo/doctrine-extensions": "2.4.*",
+    "ramsey/uuid": "^3.7",
+    "symfony/framework-bundle": "^3.3|^4.0|~5.0",
+    "sensio/framework-extra-bundle": "^5.0",
+    "symfony/config": "^3.4|^4.0|~5.0",
+    "symfony/polyfill-mbstring": "1.13.*",
+    "symfony/security-bundle": "~3.0|~4.0|~5.0",
+    "symfony/translation": "~3.0|~4.0|~5.0",
+    "symfony/form": "~3.0|~4.0|~5.0",
+    "symfony/orm-pack": "*",
+    "symfony/validator": "~3.0|~4.0|~5.0",
+    "symfony/twig-pack": "*",
+    "symfony/routing": "^3.2 || ^4.0 || ~5.0",
+    "symfony/console": "^3.2 || ^4.0 || ~5.0",
+    "symfony/http-foundation": "^3.2 || ^4.0 || ~5.0",
+    "symfony/dependency-injection": "^3.3|^4.0|~5.0",
+    "symfony/http-kernel": "^3.3|^4.0|~5.0",
+    "symfony/asset": "^3.4 || ^4.0 || ~5.0",
+    "firebase/php-jwt": "^5.0.0"
+  },
+  "require-dev": {
+    "sensio/generator-bundle": "^3.1",
+    "symfony/yaml": "^3.4 || ^4.0 || ~5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "PiouPiou\\AgriGestionBundle\\": ""
+    }
+  },
+  "extra": {
+    "symfony": {
+      "allow-contrib": "true"
+    }
+  }
+}
