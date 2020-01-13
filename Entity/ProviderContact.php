@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * PiouPiou\AgriGestionBundle\Entity\ProviderContact
  *
+ * @ORM\Entity
  * @ORM\Table(name="ribsmodule_agrigestion_provider_contact", indexes={@ORM\Index(name="fk_provider_contact_provider_adress1_idx", columns={"provider_adress_id"}), @ORM\Index(name="fk_provider_contact_provider1_idx", columns={"provider_id"})})
  */
 class ProviderContact
@@ -86,6 +87,30 @@ class ProviderContact
      * @ORM\JoinColumn(name="provider_id", referencedColumnName="id", nullable=false)
      */
     protected $provider;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    protected $created_at;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PiouPiou\RibsAdminBundle\Entity\User")
+     * @ORM\JoinColumn(name="created_by", referencedColumnName="id", nullable=false)
+     */
+    protected $created_by;
+
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    protected $updated_at;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PiouPiou\RibsAdminBundle\Entity\User")
+     * @ORM\JoinColumn(name="updated_by", referencedColumnName="id", nullable=false)
+     */
+    protected $updated_by;
 
     public function __construct()
     {
@@ -425,6 +450,84 @@ class ProviderContact
     public function getProvider()
     {
         return $this->provider;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * @param mixed $created_at
+     * @return ProviderContact
+     */
+    public function setCreatedAt($created_at): ProviderContact
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedBy()
+    {
+        return $this->created_by;
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @param mixed $created_by
+     * @return ProviderContact
+     */
+    public function setCreatedBy($created_by): ProviderContact
+    {
+        $this->created_by = $created_by;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * @param mixed $updated_at
+     * @return ProviderContact
+     */
+    public function setUpdatedAt($updated_at): ProviderContact
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updated_by;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     * @param mixed $updated_by
+     * @return ProviderContact
+     */
+    public function setUpdatedBy($updated_by): ProviderContact
+    {
+        $this->updated_by = $updated_by;
+
+        return $this;
     }
 
     public function __sleep()
