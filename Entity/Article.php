@@ -4,10 +4,13 @@ namespace PiouPiou\AgriGestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * PiouPiou\AgriGestionBundle\Entity\Article
  *
+ * @ORM\Entity()
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="article", indexes={@ORM\Index(name="fk_article_provider1_idx", columns={"provider_id"})})
  */
 class Article
@@ -50,6 +53,32 @@ class Article
      * @ORM\JoinColumn(name="provider_id", referencedColumnName="id", nullable=false)
      */
     protected $provider;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    protected $created_at;
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\ManyToOne(targetEntity="PiouPiou\RibsAdminBundle\Entity\User", inversedBy="createdByArticles")
+     * @ORM\JoinColumn(name="created_by", referencedColumnName="id", nullable=false)
+     */
+    protected $created_by;
+
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    protected $updated_at;
+
+    /**
+     * @ORM\PreUpdate
+     * @ORM\ManyToOne(targetEntity="PiouPiou\RibsAdminBundle\Entity\User", inversedBy="updatedByArticles")
+     * @ORM\JoinColumn(name="updated_by", referencedColumnName="id", nullable=false)
+     */
+    protected $updated_by;
 
     public function __construct()
     {
