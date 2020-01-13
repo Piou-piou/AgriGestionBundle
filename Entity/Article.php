@@ -11,7 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="article", indexes={@ORM\Index(name="fk_article_provider1_idx", columns={"provider_id"})})
+ * @ORM\Table(name="ribsmodule_agrigestion_article", indexes={@ORM\Index(name="fk_article_provider1_idx", columns={"provider_id"})})
  */
 class Article
 {

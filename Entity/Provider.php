@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * PiouPiou\AgriGestionBundle\Entity\Provider
  *
- * @ORM\Table(name="provider")
+ * @ORM\Table(name="ribsmodule_agrigestion_provider")
  */
 class Provider
 {

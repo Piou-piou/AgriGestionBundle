@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * PiouPiou\AgriGestionBundle\Entity\ProviderAdress
  *
- * @ORM\Table(name="provider_adress", indexes={@ORM\Index(name="fk_provider_adress_provider_idx", columns={"provider_id"})})
+ * @ORM\Table(name="ribsmodule_agrigestion_provider_adress", indexes={@ORM\Index(name="fk_provider_adress_provider_idx", columns={"provider_id"})})
  */
 class ProviderAdress
 {

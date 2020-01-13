@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PiouPiou\AgriGestionBundle\Entity\InvoiceLine
  *
- * @ORM\Table(name="invoice_line", indexes={@ORM\Index(name="fk_invoice_line_article_price1_idx", columns={"article_price_id"}), @ORM\Index(name="fk_invoice_line_invoice1_idx", columns={"invoice_id"})})
+ * @ORM\Table(name="ribsmodule_agrigestion_invoice_line", indexes={@ORM\Index(name="fk_invoice_line_article_price1_idx", columns={"article_price_id"}), @ORM\Index(name="fk_invoice_line_invoice1_idx", columns={"invoice_id"})})
  */
 class InvoiceLine
 {

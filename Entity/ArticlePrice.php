@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * PiouPiou\AgriGestionBundle\Entity\ArticlePrice
  *
- * @ORM\Table(name="article_price", indexes={@ORM\Index(name="fk_article_price_article1_idx", columns={"article_id"})})
+ * @ORM\Table(name="ribsmodule_agrigestion_article_price", indexes={@ORM\Index(name="fk_article_price_article1_idx", columns={"article_id"})})
  */
 class ArticlePrice
 {
