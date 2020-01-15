@@ -1,0 +1,10 @@
+services:
+    PiouPiou\AgriGestionBundle\:
+        resource: '../../*'
+        exclude: '../../{Entity,Migrations,Tests}'
+
+    PiouPiou\AgriGestionBundle\Controller\:
+        resource: '../../Controller'
+        calls:
+            - [setContainer, ["@service_container"]]
+        tags: ['controller.service_arguments']
