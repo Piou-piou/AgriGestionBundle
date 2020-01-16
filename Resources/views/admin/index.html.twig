@@ -1,5 +1,11 @@
 {% extends "@RibsAdmin/base.html.twig" %}
 
+{% block nav_page %}
+    <div class="ribs-container-fluid">
+        {{ render(controller("PiouPiou\\AgriGestionBundle\\Controller\\NavigationBuilderController::getPageNavigation")) }}
+    </div>
+{% endblock %}
+
 {% block body %}
 
 {% endblock %}

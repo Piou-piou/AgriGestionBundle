@@ -5,6 +5,13 @@
       "url": "agrigestion_admin_index",
       "icon": "",
       "text": "Agri Gestion"
+    },
+    {
+      "right": "agrigestion@admin@index",
+      "url": "agrigestion_admin_index",
+      "icon": "",
+      "text": "Fournisseurs",
+      "position": "top"
     }
   ]
 }
