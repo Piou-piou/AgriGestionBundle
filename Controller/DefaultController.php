@@ -14,6 +14,6 @@ class DefaultController extends AbstractController
      */
     public function index():Response
     {
-        return new Response();
+        return $this->render("@AgriGestion/admin/index.html.twig");
     }
 }
