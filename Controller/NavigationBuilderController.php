@@ -19,7 +19,6 @@ class NavigationBuilderController extends AbstractController
     {
         $module = $this->getDoctrine()->getRepository(Module::class)->findOneBy(["packageName" => "piou-piou/agri-gestion-bundle"]);
         $navigation = json_decode(file_get_contents($globals->getBaseBundlePath($module->getPackageName(), $module->getDevMode()) . "/Resources/json/navigation.json"), true);
-        dump($navigation);
         $nav = [];
         foreach ($navigation["items"] as $item) {
             if ($access_rights->testRight($item["right"]) && isset($item["position"]) && $item["position"] === "top") {
