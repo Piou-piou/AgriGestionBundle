@@ -2,12 +2,12 @@
     {% if navigation is iterable and navigation|length > 0 %}
         <ul>
             {% for i in navigation %}
-                    <li>
-                            <a href="{{ path(i.url) }}">
-                                    <i class="fa {{ i.icon }}"></i>
-                                    <span>{{ i.text }}</span>
-                            </a>
-                    </li>
+                <li>
+                    <a href="{{ path(i.url) }}">
+                        <i class="fa {{ i.icon }}"></i>
+                        <span>{{ i.text }}</span>
+                    </a>
+                </li>
             {% endfor %}
         </ul>
     {% endif %}
