@@ -4,7 +4,6 @@ namespace PiouPiou\AgriGestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * PiouPiou\AgriGestionBundle\Entity\Provider
@@ -82,7 +81,6 @@ class Provider
     protected $providerContacts;
 
     /**
-     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
     protected $created_at;
@@ -94,7 +92,6 @@ class Provider
     protected $created_by;
 
     /**
-     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     protected $updated_at;
