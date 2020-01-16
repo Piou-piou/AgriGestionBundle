@@ -5,9 +5,53 @@
 {% endblock %}
 
 {% block body %}
-    {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@create") == true %}
-        <div class="top-links">
-            <a href="{{ path('agrigestion_admin_provider_create') }}" class="ribs-button">Créer un fournisseur</a>
+    <div class="ribs-container-fluid">
+        {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@create") == true %}
+            <div class="top-links">
+                <a href="{{ path('agrigestion_admin_provider_create') }}" class="ribs-button">Créer un fournisseur</a>
+            </div>
+        {% endif %}
+
+        <div class="page-title">
+            <span>Vue d'ensemble</span>
+            <h3>Liste des fournisseurs</h3>
         </div>
-    {% endif %}
+
+        <div class="row">
+            <div class="cxs-12">
+                <div class="block">
+                    <header>
+                        <h5>Fournisseurs actifs</h5>
+                    </header>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for provider in providers %}
+                                <tr>
+                                    <td>{{ provider.name }}</td>
+                                    {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@edit") == true %}
+                                        <td>
+                                            <a href="{{ path('agrigestion_admin_provider_edit', {"id": provider.id}) }}">
+                                                Modifier
+                                            </a>
+                                        </td>
+                                    {% endif %}
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="6" class="text-center">Aucun fournisseur trouvé</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

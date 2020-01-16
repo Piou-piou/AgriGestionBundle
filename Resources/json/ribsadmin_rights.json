@@ -14,6 +14,11 @@
       "right": "agrigestion@admin@providers@create",
       "url": "agrigestion_admin_provider_create",
       "text": "Create a provider"
+    },
+    {
+      "right": "agrigestion@admin@providers@edit",
+      "url": "agrigestion_admin_provider_edit",
+      "text": "Edit a provider"
     }
   ]
 }
