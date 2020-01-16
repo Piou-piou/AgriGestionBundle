@@ -2,13 +2,14 @@
 
 namespace PiouPiou\AgriGestionBundle\Form;
 
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class Provider
+class Provider extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -31,7 +32,7 @@ class Provider
                 "label" => "Iban"
             ])
             ->add("comment", TextareaType::class, [
-                "label" => "Code"
+                "label" => "Commentaire"
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Validate',
