@@ -11,6 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Entity
  * @ORM\Table(name="ribsmodule_agrigestion_provider")
+ * @ORM\EntityListeners({"PiouPiou\AgriGestionBundle\EventListener\CreateUpdateAwareListener"})
  */
 class Provider
 {
