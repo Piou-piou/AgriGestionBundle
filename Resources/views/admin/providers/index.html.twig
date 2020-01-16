@@ -5,5 +5,9 @@
 {% endblock %}
 
 {% block body %}
-
+    {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@create") == true %}
+        <div class="top-links">
+            <a href="{{ path('agrigestion_admin_provider_create') }}" class="ribs-button">Créer un fournisseur</a>
+        </div>
+    {% endif %}
 {% endblock %}

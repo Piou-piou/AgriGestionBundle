@@ -4,6 +4,16 @@
       "right": "agrigestion@admin@index",
       "url": "agrigestion_admin_index",
       "text": "Index page of Agri Gestion"
+    },
+    {
+      "right": "agrigestion@admin@providers@index",
+      "url": "agrigestion_admin_provider_index",
+      "text": "index page of providers"
+    },
+    {
+      "right": "agrigestion@admin@providers@create",
+      "url": "agrigestion_admin_provider_create",
+      "text": "Create a provider"
     }
   ]
 }

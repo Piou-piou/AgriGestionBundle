@@ -7,8 +7,8 @@
       "text": "Agri Gestion"
     },
     {
-      "right": "agrigestion@admin@index",
-      "url": "agrigestion_admin_index",
+      "right": "agrigestion@admin@providers@index",
+      "url": "agrigestion_admin_provider_index",
       "icon": "",
       "text": "Fournisseurs",
       "position": "top"

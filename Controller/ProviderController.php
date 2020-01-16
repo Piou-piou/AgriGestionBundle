@@ -14,6 +14,15 @@ class ProviderController extends AbstractController
      */
     public function index():Response
     {
-        return $this->render("@AgriGestion/admin/index.html.twig");
+        return $this->render("@AgriGestion/admin/providers/index.html.twig");
+    }
+
+    /**
+     * @Route("/providers/create", name="agrigestion_admin_provider_create")
+     * @return Response
+     */
+    public function edit():Response
+    {
+        return $this->render("@AgriGestion/admin/providers/index.html.twig");
     }
 }
