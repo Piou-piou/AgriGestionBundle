@@ -4,13 +4,13 @@ namespace PiouPiou\AgriGestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * PiouPiou\AgriGestionBundle\Entity\ProviderContact
  *
  * @ORM\Entity
  * @ORM\Table(name="ribsmodule_agrigestion_provider_contact", indexes={@ORM\Index(name="fk_provider_contact_provider_adress1_idx", columns={"provider_adress_id"}), @ORM\Index(name="fk_provider_contact_provider1_idx", columns={"provider_id"})})
+ * @ORM\EntityListeners({"PiouPiou\AgriGestionBundle\EventListener\CreateUpdateAwareListener"})
  */
 class ProviderContact
 {
@@ -90,7 +90,6 @@ class ProviderContact
     protected $provider;
 
     /**
-     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
     protected $created_at;
@@ -102,7 +101,6 @@ class ProviderContact
     protected $created_by;
 
     /**
-     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     protected $updated_at;
@@ -481,7 +479,6 @@ class ProviderContact
     }
 
     /**
-     * @ORM\PrePersist
      * @param mixed $created_by
      * @return ProviderContact
      */
@@ -520,7 +517,6 @@ class ProviderContact
     }
 
     /**
-     * @ORM\PreUpdate
      * @param mixed $updated_by
      * @return ProviderContact
      */
