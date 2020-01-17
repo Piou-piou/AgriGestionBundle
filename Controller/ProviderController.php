@@ -3,7 +3,7 @@
 namespace PiouPiou\AgriGestionBundle\Controller;
 
 use PiouPiou\AgriGestionBundle\Entity\Provider;
-use PiouPiou\AgriGestionBundle\Entity\ProviderAdress;
+use PiouPiou\AgriGestionBundle\Entity\ProviderAddress;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -79,9 +79,9 @@ class ProviderController extends AbstractController
         $provider = $em->getRepository(Provider::class)->find($provider_id);
 
         if ($id === null) {
-            $provider_address = new ProviderAdress();
+            $provider_address = new ProviderAddress();
         } else {
-            $provider_address = $em->getRepository(ProviderAdress::class)->find($id);
+            $provider_address = $em->getRepository(ProviderAddress::class)->find($id);
         }
 
         $provider_address->setProvider($provider);

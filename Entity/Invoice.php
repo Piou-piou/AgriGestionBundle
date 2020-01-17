@@ -94,7 +94,7 @@ class Invoice
     protected $providerContact;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ProviderAdress", inversedBy="invoices")
+     * @ORM\ManyToOne(targetEntity="ProviderAddress", inversedBy="invoices")
      * @ORM\JoinColumn(name="provider_adress_id", referencedColumnName="id", nullable=false)
      */
     protected $providerAdress;
@@ -495,10 +495,10 @@ class Invoice
     /**
      * Set ProviderAdress entity (many to one).
      *
-     * @param ProviderAdress $providerAdress
+     * @param ProviderAddress $providerAdress
      * @return Invoice
      */
-    public function setProviderAdress(ProviderAdress $providerAdress = null)
+    public function setProviderAdress(ProviderAddress $providerAdress = null)
     {
         $this->providerAdress = $providerAdress;
 
@@ -508,7 +508,7 @@ class Invoice
     /**
      * Get ProviderAdress entity (many to one).
      *
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
     public function getProviderAdress()
     {

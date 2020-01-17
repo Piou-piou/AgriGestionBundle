@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="ribsmodule_agrigestion_provider_adress", indexes={@ORM\Index(name="fk_provider_adress_provider_idx", columns={"provider_id"})})
  * @ORM\EntityListeners({"PiouPiou\AgriGestionBundle\EventListener\CreateUpdateAwareListener"})
  */
-class ProviderAdress
+class ProviderAddress
 {
     /**
      * @ORM\Id
@@ -111,7 +111,7 @@ class ProviderAdress
      * Set the value of id.
      *
      * @param integer $id
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
     public function setId($id)
     {
@@ -134,7 +134,7 @@ class ProviderAdress
      * Set the value of name.
      *
      * @param string $name
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
     public function setName($name)
     {
@@ -157,7 +157,7 @@ class ProviderAdress
      * Set the value of address.
      *
      * @param string $address
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
     public function setAddress($address)
     {
@@ -180,7 +180,7 @@ class ProviderAdress
      * Set the value of address1.
      *
      * @param string $address1
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
     public function setAddress1($address1)
     {
@@ -203,7 +203,7 @@ class ProviderAdress
      * Set the value of postal_code.
      *
      * @param string $postal_code
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
     public function setPostalCode($postal_code)
     {
@@ -226,7 +226,7 @@ class ProviderAdress
      * Set the value of city.
      *
      * @param string $city
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
     public function setCity($city)
     {
@@ -249,7 +249,7 @@ class ProviderAdress
      * Set the value of state.
      *
      * @param string $state
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
     public function setState($state)
     {
@@ -272,7 +272,7 @@ class ProviderAdress
      * Set the value of country.
      *
      * @param string $country
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
     public function setCountry($country)
     {
@@ -295,7 +295,7 @@ class ProviderAdress
      * Set the value of provider_id.
      *
      * @param integer $provider_id
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
     public function setProviderId($provider_id)
     {
@@ -318,7 +318,7 @@ class ProviderAdress
      * Add Invoice entity to collection (one to many).
      *
      * @param Invoice $invoice
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
     public function addInvoice(Invoice $invoice)
     {
@@ -331,7 +331,7 @@ class ProviderAdress
      * Remove Invoice entity from collection (one to many).
      *
      * @param Invoice $invoice
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
     public function removeInvoice(Invoice $invoice)
     {
@@ -354,7 +354,7 @@ class ProviderAdress
      * Add ProviderContact entity to collection (one to many).
      *
      * @param ProviderContact $providerContact
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
     public function addProviderContact(ProviderContact $providerContact)
     {
@@ -367,7 +367,7 @@ class ProviderAdress
      * Remove ProviderContact entity from collection (one to many).
      *
      * @param ProviderContact $providerContact
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
     public function removeProviderContact(ProviderContact $providerContact)
     {
@@ -390,7 +390,7 @@ class ProviderAdress
      * Set Provider entity (many to one).
      *
      * @param Provider $provider
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
     public function setProvider(Provider $provider = null)
     {
@@ -419,9 +419,9 @@ class ProviderAdress
 
     /**
      * @param mixed $created_at
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
-    public function setCreatedAt($created_at): ProviderAdress
+    public function setCreatedAt($created_at): ProviderAddress
     {
         $this->created_at = $created_at;
 
@@ -438,9 +438,9 @@ class ProviderAdress
 
     /**
      * @param mixed $created_by
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
-    public function setCreatedBy($created_by): ProviderAdress
+    public function setCreatedBy($created_by): ProviderAddress
     {
         $this->created_by = $created_by;
 
@@ -457,9 +457,9 @@ class ProviderAdress
 
     /**
      * @param mixed $updated_at
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
-    public function setUpdatedAt($updated_at): ProviderAdress
+    public function setUpdatedAt($updated_at): ProviderAddress
     {
         $this->updated_at = $updated_at;
 
@@ -476,9 +476,9 @@ class ProviderAdress
 
     /**
      * @param mixed $updated_by
-     * @return ProviderAdress
+     * @return ProviderAddress
      */
-    public function setUpdatedBy($updated_by): ProviderAdress
+    public function setUpdatedBy($updated_by): ProviderAddress
     {
         $this->updated_by = $updated_by;
 

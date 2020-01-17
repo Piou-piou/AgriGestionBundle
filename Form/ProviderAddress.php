@@ -46,7 +46,7 @@ class ProviderAddress extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            "data_class" => \PiouPiou\AgriGestionBundle\Entity\ProviderAdress::class,
+            "data_class" => \PiouPiou\AgriGestionBundle\Entity\ProviderAddress::class,
         ]);
     }
 }

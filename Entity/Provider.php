@@ -69,7 +69,7 @@ class Provider
     protected $invoices;
 
     /**
-     * @ORM\OneToMany(targetEntity="ProviderAdress", mappedBy="provider")
+     * @ORM\OneToMany(targetEntity="ProviderAddress", mappedBy="provider")
      * @ORM\JoinColumn(name="id", referencedColumnName="provider_id", nullable=false)
      */
     protected $providerAdresses;
@@ -369,10 +369,10 @@ class Provider
     /**
      * Add ProviderAdress entity to collection (one to many).
      *
-     * @param ProviderAdress $providerAdress
+     * @param ProviderAddress $providerAdress
      * @return Provider
      */
-    public function addProviderAdress(ProviderAdress $providerAdress)
+    public function addProviderAdress(ProviderAddress $providerAdress)
     {
         $this->providerAdresses[] = $providerAdress;
 
@@ -382,10 +382,10 @@ class Provider
     /**
      * Remove ProviderAdress entity from collection (one to many).
      *
-     * @param ProviderAdress $providerAdress
+     * @param ProviderAddress $providerAdress
      * @return Provider
      */
-    public function removeProviderAdress(ProviderAdress $providerAdress)
+    public function removeProviderAdress(ProviderAddress $providerAdress)
     {
         $this->providerAdresses->removeElement($providerAdress);
 
