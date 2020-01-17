@@ -65,8 +65,8 @@ class ProviderController extends AbstractController
     }
 
     /**
-     * @Route("/providers/create/{provider_id}", name="agrigestion_admin_provider_address_create")
-     * @Route("/providers/edit/{provider_id}/{id}", name="agrigestion_admin_provider_address_edit")
+     * @Route("/providers/address/create/{provider_id}", name="agrigestion_admin_provider_address_create")
+     * @Route("/providers/address/edit/{provider_id}/{id}", name="agrigestion_admin_provider_address_edit")
      * @param Request $request
      * @param int|null $provider_id
      * @param int|null $id
