@@ -29,6 +29,16 @@
       "right": "agrigestion@admin@providers@address@edit",
       "url": "agrigestion_admin_provider_edit",
       "text": "Edit a provider address"
+    },
+    {
+      "right": "agrigestion@admin@providers@contact@create",
+      "url": "agrigestion_admin_provider_edit",
+      "text": "Create a provider contact"
+    },
+    {
+      "right": "agrigestion@admin@providers@contact@edit",
+      "url": "agrigestion_admin_provider_edit",
+      "text": "Edit a provider contact"
     }
   ]
 }

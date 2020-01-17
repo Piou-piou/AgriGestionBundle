@@ -109,6 +109,62 @@
                 </div>
             </div>
         {% endif %}
+
+        {% if provider.id %}
+            {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@contact@create") == true %}
+                <div class="top-links">
+                    <a href="{{ path('agrigestion_admin_provider_create') }}" class="ribs-button">Créer un fournisseur</a>
+                </div>
+                <div class="clear mb1-5"></div>
+            {% endif %}
+
+            <div class="row">
+                <div class="cxs-12">
+                    <div class="block">
+                        <header>
+                            <h5>Contacts du fournisseur</h5>
+                        </header>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Rôle</th>
+                                    <th>Téléphone</th>
+                                    <th>Mobile</th>
+                                    <th>Créé le</th>
+                                    <th>Modifié le</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for contact in provider.providerContacts %}
+                                    <tr>
+                                        <td>{{ contact.firstanem }} {{ contact.lastname }}</td>
+                                        <td>{{ contact.role }}</td>
+                                        <td>{{ contact.phoneNumber }}</td>
+                                        <td>{{ contact.mobile }}</td>
+                                        <td>{{ provider.createdAt is empty ? "" : provider.createdAt|date("d/m/Y H:i:s") }}</td>
+                                        <td>{{ provider.updatedAt is empty ? "" : provider.updatedAt|date("d/m/Y H:i:s") }}</td>
+                                        {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@contact@edit") == true %}
+                                            <td>
+                                                <a href="{{ path('agrigestion_admin_provider_edit', {"id": provider.id}) }}">
+                                                    Modifier
+                                                </a>
+                                            </td>
+                                        {% endif %}
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="7" class="text-center">Aucune adresse trouvée pour ce fournisseur</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
     {{ form_end(form) }}
 {% endblock %}
