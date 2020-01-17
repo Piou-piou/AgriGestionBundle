@@ -81,7 +81,7 @@ class ProviderContact
      * @ORM\ManyToOne(targetEntity="ProviderAddress", inversedBy="providerContacts")
      * @ORM\JoinColumn(name="provider_adress_id", referencedColumnName="id", nullable=false)
      */
-    protected $providerAdress;
+    protected $providerAddress;
 
     /**
      * @ORM\ManyToOne(targetEntity="Provider", inversedBy="providerContacts")
@@ -408,12 +408,12 @@ class ProviderContact
     /**
      * Set ProviderAdress entity (many to one).
      *
-     * @param ProviderAddress $providerAdress
+     * @param ProviderAddress $providerAddress
      * @return ProviderContact
      */
-    public function setProviderAdress(ProviderAddress $providerAdress = null)
+    public function setProviderAddress(ProviderAddress $providerAddress = null)
     {
-        $this->providerAdress = $providerAdress;
+        $this->providerAddress = $providerAddress;
 
         return $this;
     }
@@ -423,9 +423,9 @@ class ProviderContact
      *
      * @return ProviderAddress
      */
-    public function getProviderAdress()
+    public function getProviderAddress()
     {
-        return $this->providerAdress;
+        return $this->providerAddress;
     }
 
     /**

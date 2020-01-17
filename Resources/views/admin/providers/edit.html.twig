@@ -113,7 +113,7 @@
         {% if provider.id %}
             {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@contact@create") == true %}
                 <div class="top-links">
-                    <a href="{{ path('agrigestion_admin_provider_create') }}" class="ribs-button">Créer un fournisseur</a>
+                    <a href="{{ path('agrigestion_admin_provider_contact_create', {'provider_id': provider.id}) }}" class="ribs-button">Créer un contact</a>
                 </div>
                 <div class="clear mb1-5"></div>
             {% endif %}
@@ -148,7 +148,7 @@
                                         <td>{{ provider.updatedAt is empty ? "" : provider.updatedAt|date("d/m/Y H:i:s") }}</td>
                                         {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@contact@edit") == true %}
                                             <td>
-                                                <a href="{{ path('agrigestion_admin_provider_edit', {"id": provider.id}) }}">
+                                                <a href="{{ path('agrigestion_admin_provider_contact_edit', {'provider_id': provider.id, 'id': address.id})  }}">
                                                     Modifier
                                                 </a>
                                             </td>
@@ -156,7 +156,7 @@
                                     </tr>
                                 {% else %}
                                     <tr>
-                                        <td colspan="7" class="text-center">Aucune adresse trouvée pour ce fournisseur</td>
+                                        <td colspan="7" class="text-center">Aucun contact trouvé pour ce fournisseur</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
