@@ -68,7 +68,7 @@ class ProviderAddress
     protected $invoices;
 
     /**
-     * @ORM\OneToMany(targetEntity="ProviderContact", mappedBy="providerAdress")
+     * @ORM\OneToMany(targetEntity="ProviderContact", mappedBy="providerAddress")
      * @ORM\JoinColumn(name="id", referencedColumnName="provider_adress_id", nullable=false)
      */
     protected $providerContacts;
