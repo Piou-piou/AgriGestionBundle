@@ -466,7 +466,6 @@ class Provider
     }
 
     /**
-     * @ORM\PrePersist
      * @param mixed $created_by
      * @return Provider
      */
@@ -505,7 +504,6 @@ class Provider
     }
 
     /**
-     * @ORM\PreUpdate
      * @param mixed $updated_by
      * @return Provider
      */
