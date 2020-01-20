@@ -135,7 +135,7 @@ class ProviderController extends AbstractController
 
         $provider_contact->setProvider($provider);
 
-        $form = $this->createForm(\PiouPiou\AgriGestionBundle\Form\ProviderContact::class, $provider_contact);
+        $form = $this->createForm(\PiouPiou\AgriGestionBundle\Form\ProviderContact::class, $provider_contact, ["provider" => $provider]);
 
         $form->handleRequest($request);
 

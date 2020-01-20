@@ -2,6 +2,7 @@
 
 namespace PiouPiou\AgriGestionBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -15,6 +16,8 @@ class ProviderContact extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        dump($options["provider"]);
+
         $builder
             ->add("firstname", TextType::class, [
                 "label" => "Prénom",
@@ -42,6 +45,12 @@ class ProviderContact extends AbstractType
             ->add("providerAddress", EntityType::class, [
                 "label" => "Adresse",
                 "class" => \PiouPiou\AgriGestionBundle\Entity\ProviderAddress::class,
+                "query_builder" => function (EntityRepository $er) use ($options) {
+                    return $er->createQueryBuilder("pa")
+                        ->where('pa.provider = :provider')
+                        ->setParameter("provider", $options["provider"])
+                        ->orderBy("pa.name", "ASC");
+                },
                 "choice_label" => "name"
             ])
             ->add('submit', SubmitType::class, [
@@ -54,6 +63,7 @@ class ProviderContact extends AbstractType
     {
         $resolver->setDefaults([
             "data_class" => \PiouPiou\AgriGestionBundle\Entity\ProviderContact::class,
+            "provider" => null
         ]);
     }
 }
