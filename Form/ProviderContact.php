@@ -28,9 +28,9 @@ class ProviderContact extends AbstractType
             ->add("title", TextType::class, [
                 "label" => "Titre du contact"
             ])
-            ->add("role", TextType::class, [
+            /*->add("role", TextType::class, [
                 "label" => "Poste occupé"
-            ])
+            ])*/
             ->add("phoneNumber", NumberType::class, [
                 "label" => "Téléphone"
             ])
