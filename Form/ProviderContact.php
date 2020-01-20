@@ -16,8 +16,6 @@ class ProviderContact extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        dump($options["provider"]);
-
         $builder
             ->add("firstname", TextType::class, [
                 "label" => "Prénom",
