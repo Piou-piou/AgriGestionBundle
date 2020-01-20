@@ -9,7 +9,7 @@
     <div class="ribs-container-fluid">
         {{ form_start(form) }}
         <div class="top-links">
-            <a href="{{ path('agrigestion_admin_provider_edit', {'id': provider_contact.providerId}) }}" class="ribs-button danger">Cancel</a>
+            <a href="{{ path('agrigestion_admin_provider_edit', {'id': provider_contact.provider.id}) }}" class="ribs-button danger">Cancel</a>
             {{ form_widget(form.submit) }}
         </div>
 

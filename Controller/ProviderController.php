@@ -153,7 +153,7 @@ class ProviderController extends AbstractController
 
             return $this->redirectToRoute("agrigestion_admin_provider_edit", ["id" => $provider_id]);
         }
-
+        dump($provider_contact->getProvider());
         return $this->render("@AgriGestion/admin/providers/edit-contact.html.twig", [
             "form" => $form->createView(),
             "form_errors" => $form->getErrors(),
