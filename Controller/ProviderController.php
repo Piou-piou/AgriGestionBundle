@@ -23,7 +23,8 @@ class ProviderController extends AbstractController
      */
     public function index(EntityManagerInterface $em, Request $request): Response
     {
-        $providers = $this->doSearch($em, $request->get("search"), Provider::class);
+        $searches = $request->get("search") ?? [];
+        $providers = $this->doSearch($em, $searches, Provider::class);
 
         return $this->render("@AgriGestion/admin/providers/index.html.twig", ["providers" => $providers]);
     }
