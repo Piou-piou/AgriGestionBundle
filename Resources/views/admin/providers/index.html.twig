@@ -16,10 +16,9 @@
             <span>Vue d'ensemble</span>
             <h3>Liste des fournisseurs</h3>
         </div>
-{#
         <div class="row">
             <div class="cxs-12">
-                <form class="block ribs-form" action="" method="post">
+                <form class="block ribs-form" action="{{ path("agrigestion_admin_provider_index") }}" method="POST">
                     <header>
                         <h5>recherche</h5>
                     </header>
@@ -45,7 +44,7 @@
                     </footer>
                 </form>
             </div>
-        </div>#}
+        </div>
 
         <div class="row">
             <div class="cxs-12">

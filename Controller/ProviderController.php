@@ -2,6 +2,7 @@
 
 namespace PiouPiou\AgriGestionBundle\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
 use PiouPiou\AgriGestionBundle\Entity\Provider;
 use PiouPiou\AgriGestionBundle\Entity\ProviderAddress;
 use PiouPiou\AgriGestionBundle\Entity\ProviderContact;
@@ -12,13 +13,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProviderController extends AbstractController
 {
+    use SearchEngineTrait;
+
     /**
      * @Route("/providers/list/", name="agrigestion_admin_provider_index")
+     * @param EntityManagerInterface $em
+     * @param Request $request
      * @return Response
      */
-    public function index(): Response
+    public function index(EntityManagerInterface $em, Request $request): Response
     {
-        $providers = $this->getDoctrine()->getRepository(Provider::class)->findAll();
+        $providers = $this->doSearch($em, $request->get("search"), Provider::class);
 
         return $this->render("@AgriGestion/admin/providers/index.html.twig", ["providers" => $providers]);
     }
