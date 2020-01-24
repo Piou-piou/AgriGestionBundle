@@ -90,13 +90,13 @@
                                         <td>{{ address.country }}</td>
                                         <td>{{ address.createdAt is empty ? "" : provider.createdAt|date("d/m/Y h:i:s") }}</td>
                                         <td>{{ address.updatedAt is empty ? "" : provider.updatedAt|date("d/m/Y h:i:s") }}</td>
-                                        {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@address@edit") == true %}
-                                            <td>
+                                        <td>
+                                            {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@address@edit") == true %}
                                                 <a href="{{ path('agrigestion_admin_provider_address_edit', {'provider_id': provider.id, 'id': address.id}) }}">
                                                     Modifier
                                                 </a>
-                                            </td>
-                                        {% endif %}
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                 {% else %}
                                     <tr>
@@ -146,13 +146,13 @@
                                         <td>{{ contact.mobile }}</td>
                                         <td>{{ provider.createdAt is empty ? "" : provider.createdAt|date("d/m/Y H:i:s") }}</td>
                                         <td>{{ provider.updatedAt is empty ? "" : provider.updatedAt|date("d/m/Y H:i:s") }}</td>
-                                        {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@contact@edit") == true %}
-                                            <td>
+                                        <td>
+                                            {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@contact@edit") == true %}
                                                 <a href="{{ path('agrigestion_admin_provider_contact_edit', {'provider_id': provider.id, 'id': contact.id})  }}">
                                                     Modifier
                                                 </a>
-                                            </td>
-                                        {% endif %}
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                 {% else %}
                                     <tr>
