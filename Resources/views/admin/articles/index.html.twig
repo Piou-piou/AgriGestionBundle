@@ -23,20 +23,25 @@
                         <h5>recherche</h5>
                     </header>
 
-                    <div class="cxs-12 cmd-3 form-group">
-                        <div>
-                            <label for="search_name">Nom</label>
-                            <input type="text" name="search[name]" id="search_name" value="{{ searches.name is defined ? searches.name : null }}" class="form-control">
+                    <div class="row">
+                        <div class="cxs-12 cmd-3 form-group">
+                            <div>
+                                <label for="search_name">Nom</label>
+                                <input type="text" name="search[name]" id="search_name" value="{{ searches.name is defined ? searches.name : null }}" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="cxs-12 cmd-3">
+                        <div class="cxs-12 cmd-3 form-group">
+                            <div>
+                                <label for="search_reference">Référence</label>
+                                <input type="text" name="search[reference]" id="search_reference" value="{{ searches.reference is defined ? searches.reference : null }}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="cxs-12 cmd-3">
 
-                    </div>
-                    <div class="cxs-12 cmd-3">
+                        </div>
+                        <div class="cxs-12 cmd-3">
 
-                    </div>
-                    <div class="cxs-12 cmd-3">
-
+                        </div>
                     </div>
 
                     <footer>
