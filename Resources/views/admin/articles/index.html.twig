@@ -56,8 +56,10 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Nom</th>
-                                <th>Nombre factures</th>
+                                <th>Désignation</th>
+                                <th>Référence</th>
+                                <th>Fournisseur</th>
+                                <th>Référence d'achat</th>
                                 <th>Créé le</th>
                                 <th>Modifié le</th>
                                 <th>Actions</th>
@@ -67,20 +69,22 @@
                             {% for article in articles %}
                                 <tr>
                                     <td>{{ article.name }}</td>
-                                    <td>{{ article.invoices|length }}</td>
+                                    <td>{{ article.reference }}</td>
+                                    <td>{{ article.provider }}</td>
+                                    <td>{{ article.articlePrices|length }}</td>
                                     <td>{{ article.createdAt is empty ? "" : article.createdAt|date("d/m/Y H:i:s") }}</td>
                                     <td>{{ article.updatedAt is empty ? "" : article.updatedAt|date("d/m/Y H:i:s") }}</td>
-                                    {% if ribsadmin_acces_right.testRight("agrigestion@admin@articles@edit") == true %}
-                                        <td>
+                                    <td>
+                                        {% if ribsadmin_acces_right.testRight("agrigestion@admin@articles@edit") == true %}
                                             <a href="{{ path('agrigestion_admin_article_edit', {"id": article.id}) }}">
                                                 Modifier
                                             </a>
-                                        </td>
-                                    {% endif %}
+                                        {% endif %}
+                                    </td>
                                 </tr>
                             {% else %}
                                 <tr>
-                                    <td colspan="6" class="text-center">Aucun article trouvé</td>
+                                    <td colspan="7" class="text-center">Aucun article trouvé</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
