@@ -10,6 +10,8 @@ trait SearchEngineTrait
     /** @var EntityManagerInterface */
     private $em;
 
+    private $searches;
+
     /**
      * @param EntityManagerInterface $em
      * @param array $searches
@@ -19,6 +21,7 @@ trait SearchEngineTrait
     public function doSearch(EntityManagerInterface $em, array $searches, string $class)
     {
         $this->em = $em;
+        $this->searches = $searches;
         $entity_fields = $this->getEntityFields($class);
 
         /** @var QueryBuilder $query */
@@ -31,6 +34,14 @@ trait SearchEngineTrait
         }
 
         return $query->getQuery()->getResult();
+    }
+
+    /**
+     * @return array
+     */
+    private function getSearches(): array
+    {
+        return $this->searches;
     }
 
     /**

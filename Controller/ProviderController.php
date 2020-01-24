@@ -25,7 +25,10 @@ class ProviderController extends AbstractController
     {
         $providers = $this->doSearch($em, $request->get("search") ?? [], Provider::class);
 
-        return $this->render("@AgriGestion/admin/providers/index.html.twig", ["providers" => $providers]);
+        return $this->render("@AgriGestion/admin/providers/index.html.twig", [
+            "providers" => $providers,
+            "searches" => $this->getSearches()
+        ]);
     }
 
     /**
