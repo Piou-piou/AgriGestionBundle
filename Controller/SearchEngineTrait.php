@@ -26,13 +26,38 @@ trait SearchEngineTrait
 
         foreach ($searches as $key => $search) {
             if ($search !== "") {
-                if ($entity_fields[$key] === "string") {
-                    $query->andWhere("query.".$key . " LIKE :" . $key)->setParameter(":".$key, "%".$search."%");
-                }
+                $this->getQuerySearchElements($query, $entity_fields[$key], $key, $search);
             }
         }
 
         return $query->getQuery()->getResult();
+    }
+
+    /**
+     * @param QueryBuilder $query
+     * @param string $entity_field_type
+     * @param string $key
+     * @param string $search
+     * @return QueryBuilder
+     */
+    private function getQuerySearchElements(QueryBuilder $query, string $entity_field_type, string $key, string $search): QueryBuilder
+    {
+        switch ($entity_field_type) {
+            case "string":
+                $condition = "query.".$key . " LIKE :" . $key;
+                $parameter = "%".$search."%";
+                break;
+            default:
+                $condition = false;
+                $parameter = false;
+                break;
+        }
+
+        if ($condition && $parameter) {
+            return $query->orWhere($condition)->setParameter(":".$key, $parameter);
+        }
+
+        return $query;
     }
 
     /**
