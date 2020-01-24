@@ -1,0 +1,92 @@
+{% extends "@RibsAdmin/base.html.twig" %}
+
+{% block nav_page %}
+    {% include "@AgriGestion/admin/top_nav.html.twig" %}
+{% endblock %}
+
+{% block body %}
+    <div class="ribs-container-fluid">
+        {% if ribsadmin_acces_right.testRight("agrigestion@admin@articles@create") == true %}
+            <div class="top-links">
+                <a href="{{ path('agrigestion_admin_article_create') }}" class="ribs-button">Créer un article</a>
+            </div>
+        {% endif %}
+
+        <div class="page-title">
+            <span>Vue d'ensemble</span>
+            <h3>Liste des articles</h3>
+        </div>
+        <div class="row">
+            <div class="cxs-12">
+                <form class="block ribs-form" action="{{ path("agrigestion_admin_article_index") }}" method="POST">
+                    <header>
+                        <h5>recherche</h5>
+                    </header>
+
+                    <div class="cxs-12 cmd-3 form-group">
+                        <div>
+                            <label for="search_name">Nom</label>
+                            <input type="text" name="search[name]" id="search_name" value="{{ searches.name is defined ? searches.name : null }}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="cxs-12 cmd-3">
+
+                    </div>
+                    <div class="cxs-12 cmd-3">
+
+                    </div>
+                    <div class="cxs-12 cmd-3">
+
+                    </div>
+
+                    <footer>
+                        <button class="ribs-button">Rechercher</button>
+                    </footer>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="cxs-12">
+                <div class="block">
+                    <header>
+                        <h5>Articles actifs</h5>
+                    </header>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Nombre factures</th>
+                                <th>Créé le</th>
+                                <th>Modifié le</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for article in articles %}
+                                <tr>
+                                    <td>{{ article.name }}</td>
+                                    <td>{{ article.invoices|length }}</td>
+                                    <td>{{ article.createdAt is empty ? "" : article.createdAt|date("d/m/Y H:i:s") }}</td>
+                                    <td>{{ article.updatedAt is empty ? "" : article.updatedAt|date("d/m/Y H:i:s") }}</td>
+                                    {% if ribsadmin_acces_right.testRight("agrigestion@admin@articles@edit") == true %}
+                                        <td>
+                                            <a href="{{ path('agrigestion_admin_article_edit', {"id": article.id}) }}">
+                                                Modifier
+                                            </a>
+                                        </td>
+                                    {% endif %}
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="6" class="text-center">Aucun article trouvé</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

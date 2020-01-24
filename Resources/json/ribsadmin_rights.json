@@ -8,7 +8,7 @@
     {
       "right": "agrigestion@admin@providers@index",
       "url": "agrigestion_admin_provider_index",
-      "text": "index page of providers"
+      "text": "Index page of providers"
     },
     {
       "right": "agrigestion@admin@providers@create",
@@ -39,6 +39,21 @@
       "right": "agrigestion@admin@providers@contact@edit",
       "url": "agrigestion_admin_provider_edit",
       "text": "Edit a provider contact"
+    },
+    {
+      "right": "agrigestion@admin@article@index",
+      "url": "agrigestion_admin_article_index",
+      "text": "Index page of articles"
+    },
+    {
+      "right": "agrigestion@admin@article@create",
+      "url": "agrigestion_admin_article_create",
+      "text": "Create an article"
+    },
+    {
+      "right": "agrigestion@admin@article@edit",
+      "url": "agrigestion_admin_article_edit",
+      "text": "Edit an article"
     }
   ]
 }

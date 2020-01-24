@@ -12,6 +12,13 @@
       "icon": "",
       "text": "Fournisseurs",
       "position": "top"
+    },
+    {
+      "right": "agrigestion@admin@article@index",
+      "url": "agrigestion_admin_article_index",
+      "icon": "",
+      "text": "Articles",
+      "position": "top"
     }
   ]
 }
