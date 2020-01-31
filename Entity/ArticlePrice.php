@@ -14,6 +14,10 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class ArticlePrice
 {
+    const CURRENCY_TYPE = [
+      0 => "EUR"
+    ];
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -419,5 +423,13 @@ class ArticlePrice
     public function __sleep()
     {
         return array('id', 'reference', 'quantity', 'packaging', 'quantity_packaging', 'price', 'vat', 'currency', 'article_id');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFormattedCurrency()
+    {
+        return self::CURRENCY_TYPE[$this->getCurrency()];
     }
 }

@@ -78,7 +78,7 @@
                                     <tr>
                                         <td>{{ price.reference }}</td>
                                         <td>{{ price.quantity }} x {{ price.quantityPackaging }}{{ price.packaging }}</td>
-                                        <td>{{ price.price }} {{ price.currency }}</td>
+                                        <td>{{ price.price }} {{ price.formattedCurrency }}</td>
                                         <td>{{ price.vat }} %</td>
                                         <td>{{ price.createdAt is empty ? "" : price.createdAt|date("d/m/Y h:i:s") }}</td>
                                         <td>{{ price.updatedAt is empty ? "" : price.updatedAt|date("d/m/Y h:i:s") }}</td>
