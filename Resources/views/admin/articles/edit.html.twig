@@ -1,0 +1,86 @@
+{% extends "@RibsAdmin/base.html.twig" %}
+{% form_theme form '@RibsAdmin/forms/template.html.twig' %}
+
+{% block nav_page %}
+    {% include "@AgriGestion/admin/top_nav.html.twig" %}
+{% endblock %}
+
+{% block body %}
+    <div class="ribs-container-fluid">
+        {{ form_start(form) }}
+        <div class="top-links">
+            <a href="{{ path('agrigestion_admin_provider_index') }}" class="ribs-button danger">Cancel</a>
+            {{ form_widget(form.submit) }}
+        </div>
+
+        <div class="page-title">
+            <span>Article</span>
+            <h3>{% if article.id %}Edition de {{ article.name }}{% else %}Création{% endif %}</h3>
+        </div>
+
+
+        <div class="row">
+            <div class="cxs-12">
+                <div class="block">
+                    <header>
+                        <h5>Informations</h5>
+                    </header>
+
+                    <div class="row form-group">
+                        <div class="cxs-12 cmd-6">
+                            {{ form_row(form.name) }}
+                        </div>
+                        <div class="cxs-12 cmd-6">
+                            {{ form_row(form.reference) }}
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="cxs-12 cmd-6">
+                            {{ form_row(form.provider) }}
+                        </div>
+                        <div class="cxs-12 cmd-6">
+                            {{ form_row(form.comment) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if article.id %}
+            {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@address@create") == true %}
+                <div class="top-links">
+                    <a href="{{ path('agrigestion_admin_provider_address_create', {'provider_id': article.id}) }}" class="ribs-button">Créer une adresse</a>
+                </div>
+                <div class="clear mb1-5"></div>
+            {% endif %}
+
+            <div class="row">
+                <div class="cxs-12">
+                    <div class="block">
+                        <header>
+                            <h5>Adresses du fournisseur</h5>
+                        </header>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Adresse</th>
+                                    <th>Ville</th>
+                                    <th>Pays</th>
+                                    <th>Créé le</th>
+                                    <th>Modifié le</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

@@ -10,8 +10,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * PiouPiou\AgriGestionBundle\Entity\Article
  *
  * @ORM\Entity()
- * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="ribsmodule_agrigestion_article", indexes={@ORM\Index(name="fk_article_provider1_idx", columns={"provider_id"})})
+ * @ORM\EntityListeners({"PiouPiou\AgriGestionBundle\EventListener\CreateUpdateAwareListener"})
  */
 class Article
 {
