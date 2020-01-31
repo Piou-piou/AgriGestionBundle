@@ -54,7 +54,6 @@ class Article
     protected $provider;
 
     /**
-     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
     protected $created_at;
@@ -66,7 +65,6 @@ class Article
     protected $created_by;
 
     /**
-     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     protected $updated_at;
