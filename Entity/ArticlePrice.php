@@ -4,13 +4,13 @@ namespace PiouPiou\AgriGestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * ArticlePrice
  *
  * @ORM\Entity
  * @ORM\Table(name="ribsmodule_agrigestion_article_price", indexes={@ORM\Index(name="fk_article_price_article1_idx", columns={"article_id"})})
+ * @ORM\EntityListeners({"PiouPiou\AgriGestionBundle\EventListener\CreateUpdateAwareListener"})
  */
 class ArticlePrice
 {
@@ -34,7 +34,7 @@ class ArticlePrice
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $quantity_unit;
+    protected $packaging;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -55,11 +55,6 @@ class ArticlePrice
      * @ORM\Column(type="smallint", nullable=true)
      */
     protected $currency;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $article_id;
 
     /**
      * @ORM\OneToMany(targetEntity="InvoiceLine", mappedBy="articlePrice")
@@ -172,26 +167,26 @@ class ArticlePrice
     }
 
     /**
-     * Set the value of quantity_unit.
+     * Set the value of packaging.
      *
-     * @param string $quantity_unit
+     * @param string $packaging
      * @return ArticlePrice
      */
-    public function setQuantityUnit($quantity_unit)
+    public function setPackaging($packaging)
     {
-        $this->quantity_unit = $quantity_unit;
+        $this->packaging = $packaging;
 
         return $this;
     }
 
     /**
-     * Get the value of quantity_unit.
+     * Get the value of packaging.
      *
      * @return string
      */
-    public function getQuantityUnit()
+    public function getPackaging()
     {
-        return $this->quantity_unit;
+        return $this->packaging;
     }
 
     /**
@@ -284,29 +279,6 @@ class ArticlePrice
     public function getCurrency()
     {
         return $this->currency;
-    }
-
-    /**
-     * Set the value of article_id.
-     *
-     * @param integer $article_id
-     * @return ArticlePrice
-     */
-    public function setArticleId($article_id)
-    {
-        $this->article_id = $article_id;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of article_id.
-     *
-     * @return integer
-     */
-    public function getArticleId()
-    {
-        return $this->article_id;
     }
 
     /**
@@ -448,6 +420,6 @@ class ArticlePrice
 
     public function __sleep()
     {
-        return array('id', 'reference', 'quantity', 'quantity_unit', 'quantity_packaging', 'price', 'vat', 'currency', 'article_id');
+        return array('id', 'reference', 'quantity', 'packaging', 'quantity_packaging', 'price', 'vat', 'currency', 'article_id');
     }
 }
