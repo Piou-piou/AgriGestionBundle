@@ -1,0 +1,61 @@
+{% extends "@RibsAdmin/base.html.twig" %}
+{% form_theme form '@RibsAdmin/forms/template.html.twig' %}
+
+{% block nav_page %}
+    {% include "@AgriGestion/admin/top_nav.html.twig" %}
+{% endblock %}
+
+{% block body %}
+    <div class="ribs-container-fluid">
+        {{ form_start(form) }}
+        <div class="top-links">
+            <a href="{{ path('agrigestion_admin_article_edit', {'id': article_price.article.id}) }}" class="ribs-button danger">Cancel</a>
+            {{ form_widget(form.submit) }}
+        </div>
+
+        <div class="page-title">
+            <span>Fournisseur</span>
+            <h3>{% if article_price.id %}Edition du prix {{ article_price.reference }}{% else %}Création d'un prix pour : {{ article.name }}{% endif %}</h3>
+        </div>
+
+
+        <div class="row">
+            <div class="cxs-12">
+                <div class="block">
+                    <header>
+                        <h5>Informations</h5>
+                    </header>
+
+                    <div class="row form-group">
+                        <div class="cxs-12 cmd-6">
+                            {{ form_row(form.reference) }}
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="cxs-12 cmd-4">
+                            {{ form_row(form.quantity) }}
+                        </div>
+                        <div class="cxs-12 cmd-4">
+                            {{ form_row(form.quantity_packaging) }}
+                        </div>
+                        <div class="cxs-12 cmd-4">
+                            {{ form_row(form.packaging) }}
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="cxs-12 cmd-4">
+                            {{ form_row(form.price) }}
+                        </div>
+                        <div class="cxs-12 cmd-4">
+                            {{ form_row(form.vat) }}
+                        </div>
+                        <div class="cxs-12 cmd-4">
+                            {{ form_row(form.currency) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

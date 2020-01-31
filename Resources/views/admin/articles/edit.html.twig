@@ -47,9 +47,9 @@
         </div>
 
         {% if article.id %}
-            {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@address@create") == true %}
+            {% if ribsadmin_acces_right.testRight("agrigestion@admin@article@create") == true %}
                 <div class="top-links">
-                    <a href="{{ path('agrigestion_admin_provider_address_create', {'provider_id': article.id}) }}" class="ribs-button">Créer une adresse</a>
+                    <a href="{{ path('agrigestion_admin_article_price_create', {'article_id': article.id}) }}" class="ribs-button">Créer un prix</a>
                 </div>
                 <div class="clear mb1-5"></div>
             {% endif %}
@@ -58,23 +58,43 @@
                 <div class="cxs-12">
                     <div class="block">
                         <header>
-                            <h5>Adresses du fournisseur</h5>
+                            <h5>Prix de l'article</h5>
                         </header>
 
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Nom</th>
-                                    <th>Adresse</th>
-                                    <th>Ville</th>
-                                    <th>Pays</th>
+                                    <th>Référence d'achat</th>
+                                    <th>SKU</th>
+                                    <th>Prix</th>
+                                    <th>TVA</th>
                                     <th>Créé le</th>
                                     <th>Modifié le</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-
+                                {% for price in article.articlePrices %}
+                                    <tr>
+                                        <td>{{ price.reference }}</td>
+                                        <td>{{ price.quantity }} x {{ price.quantityPackaging }}{{ price.packaging }}</td>
+                                        <td>{{ price.price }} {{ price.currency }}</td>
+                                        <td>{{ price.vat }} %</td>
+                                        <td>{{ price.createdAt is empty ? "" : price.createdAt|date("d/m/Y h:i:s") }}</td>
+                                        <td>{{ price.updatedAt is empty ? "" : price.updatedAt|date("d/m/Y h:i:s") }}</td>
+                                        <td>
+                                            {% if ribsadmin_acces_right.testRight("agrigestion@admin@article@edit") == true %}
+                                                <a href="{{ path('agrigestion_admin_article_price_edit', {'article_id': article.id, 'id': price.id}) }}">
+                                                    Modifier
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="6" class="text-center">Aucun prix trouvé pour cet article</td>
+                                    </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
