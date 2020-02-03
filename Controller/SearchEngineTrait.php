@@ -46,14 +46,14 @@ trait SearchEngineTrait
 
     /**
      * @param QueryBuilder $query
-     * @param string $entity_field_type
+     * @param array $entity_field_infos
      * @param string $key
      * @param string $search
      * @return QueryBuilder
      */
-    private function getQuerySearchElements(QueryBuilder $query, string $entity_field_type, string $key, string $search): QueryBuilder
+    private function getQuerySearchElements(QueryBuilder $query, array $entity_field_infos, string $key, string $search): QueryBuilder
     {
-        switch ($entity_field_type) {
+        switch ($entity_field_infos["type"]) {
             case "string":
                 $condition = "query.".$key . " LIKE :" . $key;
                 $parameter = "%".$search."%";
@@ -79,11 +79,14 @@ trait SearchEngineTrait
     private function getEntityFields($class): array
     {
         $metadata = $this->em->getClassMetadata($class);
+        $mappings = $metadata->getAssociationMappings();
         $entity_fields = $metadata->getFieldNames();
         $fields = [];
 
         foreach ($entity_fields as $entity_field) {
-            $fields[$entity_field] = $metadata->getTypeOfField($entity_field);
+            $fields[$entity_field] =  [
+                "type" => $metadata->getTypeOfField($entity_field)
+            ];
         }
 
         return $fields;
