@@ -23,16 +23,20 @@ class Provider extends AbstractType
                 "required" => true
             ])
             ->add("code", TextType::class, [
-                "label" => "Code"
+                "label" => "Code",
+                "required" => false
             ])
             ->add("siret", TextType::class, [
-                "label" => "Siret"
+                "label" => "Siret",
+                "required" => false
             ])
             ->add("iban", TextType::class, [
-                "label" => "Iban"
+                "label" => "Iban",
+                "required" => false
             ])
             ->add("comment", TextareaType::class, [
-                "label" => "Commentaire"
+                "label" => "Commentaire",
+                "required" => false
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Validate',

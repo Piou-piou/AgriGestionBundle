@@ -26,19 +26,23 @@ class ProviderContact extends AbstractType
                 "required" => true
             ])
             ->add("title", TextType::class, [
-                "label" => "Titre du contact"
+                "label" => "Titre du contact",
+                "required" => true
             ])
             /*->add("role", TextType::class, [
                 "label" => "Poste occupé"
             ])*/
             ->add("phoneNumber", NumberType::class, [
-                "label" => "Téléphone"
+                "label" => "Téléphone",
+                "required" => false
             ])
             ->add("mobile", NumberType::class, [
-                "label" => "Mobile"
+                "label" => "Mobile",
+                "required" => false
             ])
             ->add("comment", TextareaType::class, [
-                "label" => "Commentaire"
+                "label" => "Commentaire",
+                "required" => false
             ])
             ->add("providerAddress", EntityType::class, [
                 "label" => "Adresse",
@@ -49,7 +53,8 @@ class ProviderContact extends AbstractType
                         ->setParameter("provider", $options["provider"])
                         ->orderBy("pa.name", "ASC");
                 },
-                "choice_label" => "name"
+                "choice_label" => "name",
+                "required" => true
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',

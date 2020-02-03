@@ -20,22 +20,28 @@ class ProviderAddress extends AbstractType
                 "required" => true
             ])
             ->add("address", TextType::class, [
-                "label" => "Adresse"
+                "label" => "Adresse",
+                "required" => true
             ])
             ->add("address1", TextType::class, [
-                "label" => "Complément d'adresse"
+                "label" => "Complément d'adresse",
+                "required" => false
             ])
             ->add("postalCode", NumberType::class, [
-                "label" => "Code postal"
+                "label" => "Code postal",
+                "required" => true
             ])
             ->add("city", TextType::class, [
-                "label" => "Ville"
+                "label" => "Ville",
+                "required" => true
             ])
             ->add("state", TextType::class, [
-                "label" => "Région"
+                "label" => "Région",
+                "required" => true
             ])
             ->add("country", TextType::class, [
-                "label" => "Pays"
+                "label" => "Pays",
+                "required" => true
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',

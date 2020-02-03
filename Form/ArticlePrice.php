@@ -19,22 +19,28 @@ class ArticlePrice extends AbstractType
                 "required" => true
             ])
             ->add("quantity", NumberType::class, [
-                "label" => "Quantité"
+                "label" => "Quantité",
+                "required" => true
             ])
             ->add("quantity_packaging", NumberType::class, [
-                "label" => "Quantité du packaging"
+                "label" => "Quantité du packaging",
+                "required" => true
             ])
             ->add("packaging", TextType::class, [
-                "label" => "Packaging"
+                "label" => "Packaging",
+                "required" => true
             ])
             ->add("price", NumberType::class, [
-                "label" => "Prix"
+                "label" => "Prix",
+                "required" => true
             ])
             ->add("vat", NumberType::class, [
-                "label" => "TVA"
+                "label" => "TVA",
+                "required" => true
             ])
             ->add("currency", TextType::class, [
-                "label" => "Devise"
+                "label" => "Devise",
+                "required" => true
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',

@@ -21,10 +21,12 @@ class Article extends AbstractType
                 "required" => true
             ])
             ->add("reference", TextType::class, [
-                "label" => "Reference"
+                "label" => "Reference",
+                "required" => true
             ])
             ->add("comment", TextareaType::class, [
-                "label" => "Commentaire"
+                "label" => "Commentaire",
+                "required" => false
             ])
             ->add("provider", EntityType::class, [
                 "label" => "Fournisseur",
@@ -33,7 +35,8 @@ class Article extends AbstractType
                     return $er->createQueryBuilder("p")
                         ->orderBy("p.name", "ASC");
                 },
-                "choice_label" => "name"
+                "choice_label" => "name",
+                "required" => true
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Validate',
