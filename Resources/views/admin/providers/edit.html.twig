@@ -9,8 +9,12 @@
     <div class="ribs-container-fluid">
         {{ form_start(form) }}
         <div class="top-links">
-            <a href="{{ path('agrigestion_admin_provider_index') }}" class="ribs-button danger">Cancel</a>
-            {{ form_widget(form.submit) }}
+            {% if disabled_form %}
+                <a href="{{ path('agrigestion_admin_provider_index') }}" class="ribs-button ">Retour</a>
+            {% else %}
+                <a href="{{ path('agrigestion_admin_provider_index') }}" class="ribs-button danger">Annuler</a>
+                {{ form_widget(form.submit) }}
+            {% endif %}
         </div>
 
         <div class="page-title">
@@ -91,6 +95,9 @@
                                         <td>{{ address.createdAt is empty ? "" : provider.createdAt|date("d/m/Y h:i:s") }}</td>
                                         <td>{{ address.updatedAt is empty ? "" : provider.updatedAt|date("d/m/Y h:i:s") }}</td>
                                         <td>
+                                            <a href="{{ path('agrigestion_admin_provider_address_show', {'provider_id': provider.id, 'id': address.id}) }}">
+                                                Voir
+                                            </a>
                                             {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@address@edit") == true %}
                                                 <a href="{{ path('agrigestion_admin_provider_address_edit', {'provider_id': provider.id, 'id': address.id}) }}">
                                                     Modifier
@@ -147,6 +154,9 @@
                                         <td>{{ provider.createdAt is empty ? "" : provider.createdAt|date("d/m/Y H:i:s") }}</td>
                                         <td>{{ provider.updatedAt is empty ? "" : provider.updatedAt|date("d/m/Y H:i:s") }}</td>
                                         <td>
+                                            <a href="{{ path('agrigestion_admin_provider_contact_show', {'provider_id': provider.id, 'id': contact.id})  }}">
+                                                Voir
+                                            </a>
                                             {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@contact@edit") == true %}
                                                 <a href="{{ path('agrigestion_admin_provider_contact_edit', {'provider_id': provider.id, 'id': contact.id})  }}">
                                                     Modifier

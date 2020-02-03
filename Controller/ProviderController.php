@@ -34,6 +34,7 @@ class ProviderController extends AbstractController
     /**
      * @Route("/providers/create/", name="agrigestion_admin_provider_create")
      * @Route("/providers/edit/{id}", name="agrigestion_admin_provider_edit")
+     * @Route("/providers/show/{id}", name="agrigestion_admin_provider_show")
      * @param Request $request
      * @param int|null $id
      * @return Response
@@ -41,6 +42,7 @@ class ProviderController extends AbstractController
     public function edit(Request $request, int $id = null): Response
     {
         $em = $this->getDoctrine()->getManager();
+        $disabled_form = $request->get("_route") === "agrigestion_admin_provider_show" ? true : false;
 
         if ($id === null) {
             $provider = new Provider();
@@ -48,7 +50,7 @@ class ProviderController extends AbstractController
             $provider = $em->getRepository(Provider::class)->find($id);
         }
 
-        $form = $this->createForm(\PiouPiou\AgriGestionBundle\Form\Provider::class, $provider);
+        $form = $this->createForm(\PiouPiou\AgriGestionBundle\Form\Provider::class, $provider, ["disabled" => $disabled_form]);
 
         $form->handleRequest($request);
 
@@ -69,13 +71,15 @@ class ProviderController extends AbstractController
         return $this->render("@AgriGestion/admin/providers/edit.html.twig", [
             "form" => $form->createView(),
             "form_errors" => $form->getErrors(),
-            "provider" => $provider
+            "provider" => $provider,
+            "disabled_form" => $disabled_form
         ]);
     }
 
     /**
      * @Route("/providers/address/create/{provider_id}", name="agrigestion_admin_provider_address_create")
      * @Route("/providers/address/edit/{provider_id}/{id}", name="agrigestion_admin_provider_address_edit")
+     * @Route("/providers/address/show/{provider_id}/{id}", name="agrigestion_admin_provider_address_show")
      * @param Request $request
      * @param int|null $provider_id
      * @param int|null $id
@@ -84,6 +88,7 @@ class ProviderController extends AbstractController
     public function editAddress(Request $request, int $provider_id = null, int $id = null): Response
     {
         $em = $this->getDoctrine()->getManager();
+        $disabled_form = $request->get("_route") === "agrigestion_admin_provider_address_show" ? true : false;
 
         $provider = $em->getRepository(Provider::class)->find($provider_id);
 
@@ -95,7 +100,7 @@ class ProviderController extends AbstractController
 
         $provider_address->setProvider($provider);
 
-        $form = $this->createForm(\PiouPiou\AgriGestionBundle\Form\ProviderAddress::class, $provider_address);
+        $form = $this->createForm(\PiouPiou\AgriGestionBundle\Form\ProviderAddress::class, $provider_address, ["disabled" => $disabled_form]);
 
         $form->handleRequest($request);
 
@@ -118,12 +123,14 @@ class ProviderController extends AbstractController
             "form" => $form->createView(),
             "form_errors" => $form->getErrors(),
             "provider_address" => $provider_address,
+            "disabled_form" => $disabled_form
         ]);
     }
 
     /**
      * @Route("/providers/contact/create/{provider_id}", name="agrigestion_admin_provider_contact_create")
      * @Route("/providers/contact/edit/{provider_id}/{id}", name="agrigestion_admin_provider_contact_edit")
+     * @Route("/providers/contact/show/{provider_id}/{id}", name="agrigestion_admin_provider_contact_show")
      * @param Request $request
      * @param int|null $provider_id
      * @param int|null $id
@@ -132,6 +139,7 @@ class ProviderController extends AbstractController
     public function editContact(Request $request, int $provider_id = null, int $id = null): Response
     {
         $em = $this->getDoctrine()->getManager();
+        $disabled_form = $request->get("_route") === "agrigestion_admin_provider_contact_show" ? true : false;
 
         $provider = $em->getRepository(Provider::class)->find($provider_id);
 
@@ -143,7 +151,7 @@ class ProviderController extends AbstractController
 
         $provider_contact->setProvider($provider);
 
-        $form = $this->createForm(\PiouPiou\AgriGestionBundle\Form\ProviderContact::class, $provider_contact, ["provider" => $provider]);
+        $form = $this->createForm(\PiouPiou\AgriGestionBundle\Form\ProviderContact::class, $provider_contact, ["provider" => $provider, "disabled" => $disabled_form]);
 
         $form->handleRequest($request);
 
@@ -166,6 +174,7 @@ class ProviderController extends AbstractController
             "form" => $form->createView(),
             "form_errors" => $form->getErrors(),
             "provider_contact" => $provider_contact,
+            "disabled_form" => $disabled_form
         ]);
     }
 }

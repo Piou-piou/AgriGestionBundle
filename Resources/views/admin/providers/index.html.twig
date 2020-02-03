@@ -71,6 +71,9 @@
                                     <td>{{ provider.createdAt is empty ? "" : provider.createdAt|date("d/m/Y H:i:s") }}</td>
                                     <td>{{ provider.updatedAt is empty ? "" : provider.updatedAt|date("d/m/Y H:i:s") }}</td>
                                     <td>
+                                        <a href="{{ path('agrigestion_admin_provider_show', {"id": provider.id}) }}">
+                                            Voir
+                                        </a>
                                         {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@edit") == true %}
                                             <a href="{{ path('agrigestion_admin_provider_edit', {"id": provider.id}) }}">
                                                 Modifier
