@@ -37,11 +37,6 @@ class Article
     protected $comment;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    protected $provider_id;
-
-    /**
      * @ORM\OneToMany(targetEntity="ArticlePrice", mappedBy="article")
      * @ORM\JoinColumn(name="id", referencedColumnName="article_id", nullable=false)
      */
@@ -170,29 +165,6 @@ class Article
     public function getComment()
     {
         return $this->comment;
-    }
-
-    /**
-     * Set the value of provider_id.
-     *
-     * @param integer $provider_id
-     * @return Article
-     */
-    public function setProviderId($provider_id)
-    {
-        $this->provider_id = $provider_id;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of provider_id.
-     *
-     * @return integer
-     */
-    public function getProviderId()
-    {
-        return $this->provider_id;
     }
 
     /**
