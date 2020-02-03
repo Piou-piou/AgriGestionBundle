@@ -12,7 +12,7 @@
             {% if disabled_form %}
                 <a href="{{ path('agrigestion_admin_article_edit', {'id': article_price.article.id}) }}" class="ribs-button">Retour</a>
             {% else %}
-                <a href="{{ path('agrigestion_admin_article_edit', {'id': article_price.article.id}) }}" class="ribs-button danger">Retour</a>
+                <a href="{{ path('agrigestion_admin_article_edit', {'id': article_price.article.id}) }}" class="ribs-button danger">Annuler</a>
                 {{ form_widget(form.submit) }}
             {% endif %}
         </div>

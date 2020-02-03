@@ -12,7 +12,7 @@
             {% if disabled_form %}
                 <a href="{{ path('agrigestion_admin_article_index') }}" class="ribs-button ">Retour</a>
             {% else %}
-                <a href="{{ path('agrigestion_admin_article_index') }}" class="ribs-button danger">Retour</a>
+                <a href="{{ path('agrigestion_admin_article_index') }}" class="ribs-button danger">Annuler</a>
                 {{ form_widget(form.submit) }}
             {% endif %}
         </div>
@@ -21,7 +21,6 @@
             <span>Article</span>
             <h3>{% if article.id %}Edition de {{ article.name }}{% else %}Création{% endif %}</h3>
         </div>
-
 
         <div class="row">
             <div class="cxs-12">
