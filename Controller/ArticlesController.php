@@ -33,6 +33,7 @@ class ArticlesController extends AbstractController
     /**
      * @Route("/articles/create/", name="agrigestion_admin_article_create")
      * @Route("/articles/edit/{id}", name="agrigestion_admin_article_edit")
+     * @Route("/articles/show/{id}", name="agrigestion_admin_article_show")
      * @param Request $request
      * @param int|null $id
      * @return Response
@@ -40,6 +41,7 @@ class ArticlesController extends AbstractController
     public function edit(Request $request, int $id = null): Response
     {
         $em = $this->getDoctrine()->getManager();
+        $disabled_form = $request->get("_route") === "agrigestion_admin_article_show" ? true : false;
 
         if ($id === null) {
             $article = new Article();
@@ -47,7 +49,7 @@ class ArticlesController extends AbstractController
             $article = $em->getRepository(Article::class)->find($id);
         }
 
-        $form = $this->createForm(\PiouPiou\AgriGestionBundle\Form\Article::class, $article);
+        $form = $this->createForm(\PiouPiou\AgriGestionBundle\Form\Article::class, $article, ["disabled" => $disabled_form]);
 
         $form->handleRequest($request);
 
@@ -68,13 +70,15 @@ class ArticlesController extends AbstractController
         return $this->render("@AgriGestion/admin/articles/edit.html.twig", [
             "form" => $form->createView(),
             "form_errors" => $form->getErrors(),
-            "article" => $article
+            "article" => $article,
+            "disabled_form" => $disabled_form
         ]);
     }
 
     /**
      * @Route("/articles/price/create/{article_id}", name="agrigestion_admin_article_price_create")
      * @Route("/articles/price/edit/{article_id}/{id}", name="agrigestion_admin_article_price_edit")
+     * @Route("/articles/price/show/{article_id}/{id}", name="agrigestion_admin_article_price_show")
      * @param Request $request
      * @param int $article_id
      * @param int|null $id
@@ -83,6 +87,7 @@ class ArticlesController extends AbstractController
     public function editPrice(Request $request, int $article_id, int $id = null): Response
     {
         $em = $this->getDoctrine()->getManager();
+        $disabled_form = $request->get("_route") === "agrigestion_admin_article_price_show" ? true : false;
 
         $article = $em->getRepository(Article::class)->find($article_id);
 
@@ -95,7 +100,7 @@ class ArticlesController extends AbstractController
 
         $article_price->setArticle($article);
 
-        $form = $this->createForm(\PiouPiou\AgriGestionBundle\Form\ArticlePrice::class, $article_price);
+        $form = $this->createForm(\PiouPiou\AgriGestionBundle\Form\ArticlePrice::class, $article_price, ["disabled" => $disabled_form]);
 
         $form->handleRequest($request);
 
@@ -119,6 +124,7 @@ class ArticlesController extends AbstractController
             "form_errors" => $form->getErrors(),
             "article" => $article,
             "article_price" => $article_price,
+            "disabled_form" => $disabled_form
         ]);
     }
 }

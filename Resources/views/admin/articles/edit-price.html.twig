@@ -9,8 +9,12 @@
     <div class="ribs-container-fluid">
         {{ form_start(form) }}
         <div class="top-links">
-            <a href="{{ path('agrigestion_admin_article_edit', {'id': article_price.article.id}) }}" class="ribs-button danger">Cancel</a>
-            {{ form_widget(form.submit) }}
+            {% if disabled_form %}
+                <a href="{{ path('agrigestion_admin_article_edit', {'id': article_price.article.id}) }}" class="ribs-button">Retour</a>
+            {% else %}
+                <a href="{{ path('agrigestion_admin_article_edit', {'id': article_price.article.id}) }}" class="ribs-button danger">Retour</a>
+                {{ form_widget(form.submit) }}
+            {% endif %}
         </div>
 
         <div class="page-title">

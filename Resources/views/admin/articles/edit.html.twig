@@ -9,8 +9,12 @@
     <div class="ribs-container-fluid">
         {{ form_start(form) }}
         <div class="top-links">
-            <a href="{{ path('agrigestion_admin_article_index') }}" class="ribs-button danger">Cancel</a>
-            {{ form_widget(form.submit) }}
+            {% if disabled_form %}
+                <a href="{{ path('agrigestion_admin_article_index') }}" class="ribs-button ">Retour</a>
+            {% else %}
+                <a href="{{ path('agrigestion_admin_article_index') }}" class="ribs-button danger">Retour</a>
+                {{ form_widget(form.submit) }}
+            {% endif %}
         </div>
 
         <div class="page-title">
@@ -83,6 +87,9 @@
                                         <td>{{ price.createdAt is empty ? "" : price.createdAt|date("d/m/Y h:i:s") }}</td>
                                         <td>{{ price.updatedAt is empty ? "" : price.updatedAt|date("d/m/Y h:i:s") }}</td>
                                         <td>
+                                            <a href="{{ path('agrigestion_admin_article_price_show', {'article_id': article.id, 'id': price.id}) }}">
+                                                Voir
+                                            </a>
                                             {% if ribsadmin_acces_right.testRight("agrigestion@admin@article@edit") == true %}
                                                 <a href="{{ path('agrigestion_admin_article_price_edit', {'article_id': article.id, 'id': price.id}) }}">
                                                     Modifier

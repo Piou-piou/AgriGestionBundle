@@ -80,6 +80,9 @@
                                     <td>{{ article.createdAt is empty ? "" : article.createdAt|date("d/m/Y H:i:s") }}</td>
                                     <td>{{ article.updatedAt is empty ? "" : article.updatedAt|date("d/m/Y H:i:s") }}</td>
                                     <td>
+                                        <a href="{{ path('agrigestion_admin_article_show', {"id": article.id}) }}">
+                                            Voir
+                                        </a>
                                         {% if ribsadmin_acces_right.testRight("agrigestion@admin@articles@edit") == true %}
                                             <a href="{{ path('agrigestion_admin_article_edit', {"id": article.id}) }}">
                                                 Modifier
