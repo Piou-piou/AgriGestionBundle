@@ -4,6 +4,7 @@ namespace PiouPiou\AgriGestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * PiouPiou\AgriGestionBundle\Entity\Provider
@@ -23,6 +24,7 @@ class Provider
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("search")
      */
     protected $short_name;
 

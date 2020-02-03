@@ -3,6 +3,7 @@
 namespace PiouPiou\AgriGestionBundle\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\MappingException;
 use Doctrine\ORM\QueryBuilder;
 
 trait SearchEngineTrait
@@ -17,6 +18,7 @@ trait SearchEngineTrait
      * @param array $searches
      * @param string $class
      * @return mixed
+     * @throws MappingException
      */
     public function doSearch(EntityManagerInterface $em, array $searches, string $class)
     {
@@ -75,6 +77,7 @@ trait SearchEngineTrait
      * get entity fields type of given entity
      * @param $class
      * @return array
+     * @throws MappingException
      */
     private function getEntityFields($class): array
     {
@@ -83,9 +86,20 @@ trait SearchEngineTrait
         $entity_fields = $metadata->getFieldNames();
         $fields = [];
 
+        /*foreach ($mappings as $mapping) {
+           $target_entity = new $mapping["targetEntity"]();
+           $metadata_target = $this->em->getClassMetadata($mapping["targetEntity"])->reflClass;
+           dump($metadata_target);
+            $fields[$mapping["fieldName"]] =  [
+                "type" => "integer",
+                "entity_field_name" => $mapping["fieldName"]
+            ];
+        }*/
+
         foreach ($entity_fields as $entity_field) {
             $fields[$entity_field] =  [
-                "type" => $metadata->getTypeOfField($entity_field)
+                "type" => $metadata->getTypeOfField($entity_field),
+                "entity_field_name" => null
             ];
         }
 
