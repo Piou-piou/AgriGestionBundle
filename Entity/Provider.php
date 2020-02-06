@@ -24,7 +24,7 @@ class Provider
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("search")
+     * @Groups("ribs_search")
      */
     protected $short_name;
 

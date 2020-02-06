@@ -27,7 +27,7 @@ trait SearchEngineTrait
         $entity_fields = $this->getEntityFields($class);
 
         /** @var QueryBuilder $query */
-        $query =  $this->em->getRepository($class)->createQueryBuilder("query");
+        $query = $this->em->getRepository($class)->createQueryBuilder("query");
 
         foreach ($searches as $key => $search) {
             if ($search !== "") {
@@ -57,17 +57,22 @@ trait SearchEngineTrait
     {
         switch ($entity_field_infos["type"]) {
             case "string":
-                $condition = "query.".$key . " LIKE :" . $key;
-                $parameter = "%".$search."%";
-                break;
-            default:
-                $condition = false;
-                $parameter = false;
-                break;
-        }
+                $condition = "query." . $key . " LIKE :" . $key;
+                $parameter = "%" . $search . "%";
+                $query->orWhere($condition)->setParameter(":" . $key, $parameter);
+            case "integer":
+                if ($entity_field_infos["entity_field_name"]) {
+                    $alias = substr($entity_field_infos["entity_field_name"], 0, 3);
+                    $query->join('query.provider', $alias);
 
-        if ($condition && $parameter) {
-            return $query->orWhere($condition)->setParameter(":".$key, $parameter);
+                    foreach ($entity_field_infos["joined_entity_fields"] as $joined_key => $joined_field) {
+                        $condition = $alias."." . $joined_key . " LIKE :" . $joined_key;
+                        $parameter = "%" . $search . "%";
+                        $query->orWhere($condition)->setParameter(":" . $joined_key, $parameter);
+                    }
+                }
+            default:
+                break;
         }
 
         return $query;
@@ -86,23 +91,54 @@ trait SearchEngineTrait
         $entity_fields = $metadata->getFieldNames();
         $fields = [];
 
-        /*foreach ($mappings as $mapping) {
-           $target_entity = new $mapping["targetEntity"]();
-           $metadata_target = $this->em->getClassMetadata($mapping["targetEntity"])->reflClass;
-           dump($metadata_target);
-            $fields[$mapping["fieldName"]] =  [
-                "type" => "integer",
-                "entity_field_name" => $mapping["fieldName"]
-            ];
-        }*/
+        foreach ($mappings as $mapping) {
+            $metadata_target = $this->em->getClassMetadata($mapping["targetEntity"]);
+            $joined_entity_fields = $this->getJoinedEntityFields($metadata_target, $metadata_target->reflClass);
+
+            if (count($joined_entity_fields)) {
+                $fields[$mapping["fieldName"]] = [
+                    "type" => "integer",
+                    "entity_field_name" => $mapping["fieldName"],
+                    "joined_entity_fields" => $this->getJoinedEntityFields($metadata_target, $metadata_target->reflClass)
+                ];
+            }
+        }
 
         foreach ($entity_fields as $entity_field) {
-            $fields[$entity_field] =  [
+            $fields[$entity_field] = [
                 "type" => $metadata->getTypeOfField($entity_field),
                 "entity_field_name" => null
             ];
         }
-
         return $fields;
+    }
+
+    /**
+     * method to get joined entity fields that are in group ribs_search
+     * @param $metadata_target
+     * @param $ref_class
+     * @return array
+     */
+    private function getJoinedEntityFields($metadata_target, $ref_class)
+    {
+        $joined_fields = [];
+
+        foreach ($ref_class->getProperties() as $property) {
+            $doc = $property->getDocComment();
+            $group_start = strpos($doc, "@Groups(") ? strpos($doc, "@Groups(") + 8 : false;
+
+            if ($group_start) {
+                $group_end = strpos($doc, ")", $group_start);
+                $groups = substr($doc, $group_start, $group_end - $group_start);
+
+                if (strpos($groups, "ribs_search")) {
+                    $joined_fields[$property->getName()] = [
+                        "type" => $metadata_target->getTypeOfField($property->getName())
+                    ];
+                }
+            }
+        }
+
+        return $joined_fields;
     }
 }
