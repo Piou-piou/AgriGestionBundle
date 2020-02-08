@@ -6,7 +6,7 @@
 
 {% block body %}
     <div class="ribs-container-fluid">
-        {% if ribsadmin_acces_right.testRight("agrigestion@admin@articles@create") == true %}
+        {% if ribsadmin_acces_right.testRight("agrigestion@admin@article@create") == true %}
             <div class="top-links">
                 <a href="{{ path('agrigestion_admin_article_create') }}" class="ribs-button">Créer un article</a>
             </div>
@@ -86,7 +86,7 @@
                                         <a href="{{ path('agrigestion_admin_article_show', {"id": article.id}) }}">
                                             Voir
                                         </a>
-                                        {% if ribsadmin_acces_right.testRight("agrigestion@admin@articles@edit") == true %}
+                                        {% if ribsadmin_acces_right.testRight("agrigestion@admin@article@edit") == true %}
                                             <a href="{{ path('agrigestion_admin_article_edit', {"id": article.id}) }}">
                                                 Modifier
                                             </a>
