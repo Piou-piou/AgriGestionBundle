@@ -93,9 +93,11 @@ class ProviderController extends AbstractController
             $provider->setDeleted(true);
             $em->persist($provider);
             $em->flush();
+
+            $this->addFlash("success-flash", "Le fournisseur ". $provider->getName() . " a été supprimé");
         }
 
-        return new RedirectResponse("agrigestion_admin_provider_index");
+        return $this->redirectToRoute("agrigestion_admin_provider_index");
     }
 
     /**
