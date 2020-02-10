@@ -83,6 +83,11 @@ class Provider
     protected $providerContacts;
 
     /**
+     * @ORM\Column(name="deleted", type="boolean", nullable=true, options={"default":false})
+     */
+    protected $deleted = false;
+
+    /**
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
     protected $created_at;
@@ -438,6 +443,25 @@ class Provider
     public function getProviderContacts()
     {
         return $this->providerContacts;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDeleted(): bool
+    {
+        return $this->deleted;
+    }
+
+    /**
+     * @param bool $deleted
+     * @return Provider
+     */
+    public function setDeleted(bool $deleted): Provider
+    {
+        $this->deleted = $deleted;
+
+        return $this;
     }
 
     /**

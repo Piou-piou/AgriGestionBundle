@@ -21,6 +21,11 @@
       "text": "Edit a provider"
     },
     {
+      "right": "agrigestion@admin@providers@delete",
+      "url": "agrigestion_admin_provider_delete",
+      "text": "Delete a provider"
+    },
+    {
       "right": "agrigestion@admin@providers@address@create",
       "url": "agrigestion_admin_provider_edit",
       "text": "Create a provider address"

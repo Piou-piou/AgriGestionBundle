@@ -79,6 +79,9 @@
                                                 Modifier
                                             </a>
                                         {% endif %}
+                                        {% if ribsadmin_acces_right.testRight("agrigestion@admin@providers@delete") == true %}
+                                            <a data-href="{{ path('agrigestion_admin_provider_delete', {"id": provider.id}) }}" class="delete open-popup" data-ribspopup data-popup="delete-provider">Supprimer</a>
+                                        {% endif %}
                                     </td>
                                 </tr>
                             {% else %}
@@ -90,6 +93,24 @@
                     </table>
                 </div>
             </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block other_content %}
+    <div class="ribs-popup" id="delete-provider">
+        <div class="content fixed-width">
+            <div id="set-content">
+                <h2>Voulez-vous supprimer ce fournisseur ?</h2>
+                <p>Ceci aura pour effet du supprimer également tous les articles, adresses et contact liés...</p>
+                <p class="warning">Attention, cette action est irréversible !</p>
+            </div>
+
+            <div class="link">
+                <a class="cancel" data-close>Annuler</a>
+                <a href="#" class="validate" data-validate>Valider</a>
+            </div>
+            <div class="clear"></div>
         </div>
     </div>
 {% endblock %}

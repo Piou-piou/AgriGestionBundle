@@ -3,10 +3,12 @@
 namespace PiouPiou\AgriGestionBundle\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\MappingException;
 use PiouPiou\AgriGestionBundle\Entity\Provider;
 use PiouPiou\AgriGestionBundle\Entity\ProviderAddress;
 use PiouPiou\AgriGestionBundle\Entity\ProviderContact;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,6 +22,7 @@ class ProviderController extends AbstractController
      * @param EntityManagerInterface $em
      * @param Request $request
      * @return Response
+     * @throws MappingException
      */
     public function index(EntityManagerInterface $em, Request $request): Response
     {
@@ -74,6 +77,25 @@ class ProviderController extends AbstractController
             "provider" => $provider,
             "disabled_form" => $disabled_form
         ]);
+    }
+
+    /**
+     * @Route("/providers/delete/{id}", name="agrigestion_admin_provider_delete")
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function delete(int $id): RedirectResponse
+    {
+        $em = $this->getDoctrine()->getManager();
+        $provider = $em->getRepository(Provider::class)->find($id);
+
+        if ($provider) {
+            $provider->setDeleted(true);
+            $em->persist($provider);
+            $em->flush();
+        }
+
+        return new RedirectResponse("agrigestion_admin_provider_index");
     }
 
     /**
