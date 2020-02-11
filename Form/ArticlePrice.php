@@ -27,8 +27,9 @@ class ArticlePrice extends AbstractType
                 "label" => "Quantité du packaging",
                 "required" => true
             ])
-            ->add("packaging", TextType::class, [
+            ->add("packaging", ChoiceType::class, [
                 "label" => "Packaging",
+                "choices" => \PiouPiou\AgriGestionBundle\Entity\ArticlePrice::retrieveUnitLabel(),
                 "required" => true
             ])
             ->add("price", NumberType::class, [

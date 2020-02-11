@@ -19,6 +19,28 @@ class ArticlePrice
       "CHF" => "CHF",
     ];
 
+    const UNIT = [
+        "mass" => array(
+            "UG" => array("ratio" => 0.000001, "label" => "µg"),
+            "MG" => array("ratio" => 0.001, "label" => "mg"),
+            "G" => array("ratio" => 1, "label" => "g"),
+            "KG" => array("ratio" => 1000, "label" => "kg"),
+            "T" => array("ratio" => 1000000, "label" => "t")
+        ),
+        "volume" => array(
+            "UL" => array("ratio" => 0.001, "label" => "µL"),
+            "ML" => array("ratio" => 1, "label" => "mL"),
+            "L" => array("ratio" => 1000, "label" => "L"),
+            "M3" => array("ratio" => 1000000, "label" => "m³")
+        ),
+        "generic" => array(
+            "U" => array("ratio" => 1, "label" => "U"),
+            "KU" => array("ratio" => 1000, "label" => "kU"),
+            "MU" => array("ratio" => 1000000, "label" => "MU"),
+            "VIAL" => array("ratio" => 1, "label" => "vial")
+        )
+    ];
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -452,5 +474,22 @@ class ArticlePrice
     public function getVatRecovered()
     {
         return $this->getFinalPrice() - $this->getPrice();
+    }
+
+    /**
+     * @return array
+     */
+    public static function retrieveUnitLabel(): array
+    {
+        $units = [];
+
+        foreach (self::UNIT as $unit_group => $units_of_type) {
+            $units[$unit_group] = [];
+            foreach ($units_of_type as $unit_type => $unit) {
+                $units[$unit_group][$unit_type] = $unit_type;
+            }
+        }
+
+        return $units;
     }
 }
