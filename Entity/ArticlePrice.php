@@ -15,7 +15,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 class ArticlePrice
 {
     const CURRENCY_TYPE = [
-      0 => "EUR"
+      "EUR" => "EUR",
+      "CHF" => "CHF",
     ];
 
     /**

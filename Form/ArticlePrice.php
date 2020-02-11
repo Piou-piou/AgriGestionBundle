@@ -3,6 +3,7 @@
 namespace PiouPiou\AgriGestionBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -38,8 +39,9 @@ class ArticlePrice extends AbstractType
                 "label" => "TVA",
                 "required" => true
             ])
-            ->add("currency", TextType::class, [
+            ->add("currency", ChoiceType::class, [
                 "label" => "Devise",
+                "choices" => \PiouPiou\AgriGestionBundle\Entity\ArticlePrice::CURRENCY_TYPE,
                 "required" => true
             ])
             ->add('submit', SubmitType::class, [
