@@ -31,7 +31,7 @@ class ArticlePrice extends AbstractType
                 "required" => true
             ])
             ->add("price", NumberType::class, [
-                "label" => "Prix",
+                "label" => "Prix HT",
                 "required" => true
             ])
             ->add("vat", NumberType::class, [

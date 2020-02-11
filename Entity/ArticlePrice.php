@@ -432,4 +432,24 @@ class ArticlePrice
     {
         return self::CURRENCY_TYPE[$this->getCurrency()];
     }
+
+    /**
+     * @return float|int
+     */
+    public function getFinalPrice()
+    {
+        if (!$this->getVat()) {
+            return $this->getPrice();
+        }
+
+        return $this->getPrice() * (($this->getVat()+100)/100);
+    }
+
+    /**
+     * @return float|int
+     */
+    public function getVatRecovered()
+    {
+        return $this->getFinalPrice() - $this->getPrice();
+    }
 }

@@ -69,8 +69,10 @@
                                 <tr>
                                     <th>Référence d'achat</th>
                                     <th>SKU</th>
-                                    <th>Prix</th>
+                                    <th>Prix HT</th>
                                     <th>TVA</th>
+                                    <th>Prix TTC</th>
+                                    <th>TVA récupérée</th>
                                     <th>Créé le</th>
                                     <th>Modifié le</th>
                                     <th>Actions</th>
@@ -83,6 +85,8 @@
                                         <td>{{ price.quantity }} x {{ price.quantityPackaging }}{{ price.packaging }}</td>
                                         <td>{{ price.price }} {{ price.formattedCurrency }}</td>
                                         <td>{{ price.vat }} %</td>
+                                        <td>{{ price.finalPrice }} {{ price.formattedCurrency }}</td>
+                                        <td>{{ price.vatRecovered }} {{ price.formattedCurrency }}</td>
                                         <td>{{ price.createdAt is empty ? "" : price.createdAt|date("d/m/Y h:i:s") }}</td>
                                         <td>{{ price.updatedAt is empty ? "" : price.updatedAt|date("d/m/Y h:i:s") }}</td>
                                         <td>
