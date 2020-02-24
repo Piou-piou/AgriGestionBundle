@@ -3,6 +3,7 @@
 namespace PiouPiou\AgriGestionBundle\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\MappingException;
 use PiouPiou\AgriGestionBundle\Entity\Article;
 use PiouPiou\AgriGestionBundle\Entity\ArticlePrice;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,6 +20,7 @@ class ArticlesController extends AbstractController
      * @param EntityManagerInterface $em
      * @param Request $request
      * @return Response
+     * @throws MappingException
      */
     public function index(EntityManagerInterface $em, Request $request): Response
     {
