@@ -59,6 +59,11 @@
       "right": "agrigestion@admin@article@edit",
       "url": "agrigestion_admin_article_edit",
       "text": "Edit an article"
+    },
+    {
+      "right": "agrigestion@admin@invoice@index",
+      "url": "agrigestion_admin_invoice_index",
+      "text": "Index page of invoices"
     }
   ]
 }

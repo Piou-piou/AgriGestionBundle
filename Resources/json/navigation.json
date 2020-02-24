@@ -19,6 +19,13 @@
       "icon": "",
       "text": "Articles",
       "position": "top"
+    },
+    {
+      "right": "agrigestion@admin@invoice@index",
+      "url": "agrigestion_admin_invoice_index",
+      "icon": "",
+      "text": "Factures",
+      "position": "top"
     }
   ]
 }
