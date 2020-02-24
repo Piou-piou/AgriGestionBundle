@@ -38,9 +38,17 @@ class Article extends AbstractType
                 "choice_label" => "name",
                 "required" => true
             ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Validate',
-                'attr' => []
+            /*->add("providerAutocomplete", TextType::class, [
+                "label" => "Fournisseur autocomplete",
+                "attr" => [
+                    "class" => "ribs-autocomplete"
+                ],
+                "required" => false,
+                "mapped" => false
+            ])*/
+            ->add("submit", SubmitType::class, [
+                "label" => "Validate",
+                "attr" => []
             ]);
     }
 
