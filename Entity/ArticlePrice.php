@@ -79,7 +79,7 @@ class ArticlePrice
     protected $vat;
 
     /**
-     * @ORM\Column(type="smallint", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $currency;
 
