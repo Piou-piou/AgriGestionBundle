@@ -5,4 +5,96 @@
 {% endblock %}
 
 {% block body %}
+    <div class="ribs-container-fluid">
+        {% if ribsadmin_acces_right.testRight("agrigestion@admin@invoice@create") == true %}
+            <div class="top-links">
+                <a href="{{ path('agrigestion_admin_article_create') }}" class="ribs-button">Créer une facture</a>
+            </div>
+        {% endif %}
+
+        <div class="page-title">
+            <span>Vue d'ensemble</span>
+            <h3>Liste des factures</h3>
+        </div>
+        <div class="row">
+            <div class="cxs-12">
+                <form class="block ribs-form" action="{{ path("agrigestion_admin_invoice_index") }}" method="POST">
+                    <header>
+                        <h5>recherche</h5>
+                    </header>
+
+                    <div class="row">
+                        <div class="cxs-12 cmd-3 form-group">
+                            <div>
+                                <label for="search_name">Numéro</label>
+                                <input type="text" name="search[number]" id="search_number" value="{{ searches.number is defined ? searches.number : null }}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="cxs-12 cmd-3 form-group">
+                            <div>
+                                <label for="search_reference">Date</label>
+                                <input type="text" name="search[date]" id="search_date" value="{{ searches.date is defined ? searches.date : null }}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="cxs-12 cmd-3 form-group">
+                            <div>
+                                <label for="search_provider">Fournisseur</label>
+                                <input type="text" name="search[provider]" id="search_provider" value="{{ searches.provider is defined ? searches.provider : null }}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="cxs-12 cmd-3">
+
+                        </div>
+                    </div>
+
+                    <footer>
+                        <button class="ribs-button">Rechercher</button>
+                    </footer>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="cxs-12">
+                <div class="block">
+                    <header>
+                        <h5>Factures actifs</h5>
+                    </header>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Numéro</th>
+                                <th>Fournisseur</th>
+                                <th>Date</th>
+                                <th>A payer avant le</th>
+                                <th>Date de paiement</th>
+                                <th>Montant HT</th>
+                                <th>TVA</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for invoice in invoices %}
+                                <tr>
+                                    <td>{{ invoice.number }}</td>
+                                    <td>{{ invoice.provider is empty ? "" : invoice.provider.name }}</td>
+                                    <td>{{ invoice.date is empty ? "" : invoice.date|date("d/m/Y H:i:s") }}</td>
+                                    <td>{{ invoice.dueDate is empty ? "" : invoice.dueDate|date("d/m/Y H:i:s") }}</td>
+                                    <td>{{ invoice.paymentDate is empty ? "" : invoice.paymentDate|date("d/m/Y H:i:s") }}</td>
+                                    <td>{{ invoice.amount }}</td>
+                                    <td>{{ invoice.vat }}</td>
+                                    <td></td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="8" class="text-center">Aucune facture trouvée</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
