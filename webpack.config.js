@@ -4,7 +4,8 @@ var glob = require('glob');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 Encore
-.enableSingleRuntimeChunk()
+.disableSingleRuntimeChunk()
+.cleanupOutputBeforeBuild()
 .setOutputPath('./Resources/public/')
 .setPublicPath('/bundles/agrigestion')
 .setManifestKeyPrefix('bundles/agrigestion')

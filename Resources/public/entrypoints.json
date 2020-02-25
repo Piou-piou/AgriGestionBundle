@@ -2,7 +2,6 @@
   "entrypoints": {
     "js/main": {
       "js": [
-        "/bundles/agrigestion/runtime.js",
         "/bundles/agrigestion/js/main.js"
       ]
     }
