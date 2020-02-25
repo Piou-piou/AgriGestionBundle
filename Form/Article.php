@@ -41,7 +41,7 @@ class Article extends AbstractType
             /*->add("providerAutocomplete", TextType::class, [
                 "label" => "Fournisseur autocomplete",
                 "attr" => [
-                    "class" => "ribs-autocomplete"
+                    "class" => "input-autocomplete",
                 ],
                 "required" => false,
                 "mapped" => false
