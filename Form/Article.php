@@ -42,6 +42,7 @@ class Article extends AbstractType
                 "label" => "Fournisseur autocomplete",
                 "attr" => [
                     "class" => "input-autocomplete",
+                    "data-url" => "agrigestion_admin_provider_autocomplete"
                 ],
                 "required" => false,
                 "mapped" => false

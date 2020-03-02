@@ -7,6 +7,13 @@ ribsForms.forEach((form) => {
   const autocompleteFields = form.querySelectorAll('.input-autocomplete');
 
   autocompleteFields.forEach((autocompleteField) => {
-    console.log(autocompleteField);
+    autocompleteField.addEventListener('keyup', (event) => {
+      const field = event.currentTarget;
+      if (field.value.length > 2) {
+        api.post(field.dataset.url, {autocomplete: field.value}).then((data) => {
+          console.log(data);
+        });
+      }
+    });
   });
 });

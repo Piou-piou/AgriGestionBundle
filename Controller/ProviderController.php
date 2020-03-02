@@ -8,6 +8,7 @@ use PiouPiou\AgriGestionBundle\Entity\Provider;
 use PiouPiou\AgriGestionBundle\Entity\ProviderAddress;
 use PiouPiou\AgriGestionBundle\Entity\ProviderContact;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,6 +32,20 @@ class ProviderController extends AbstractController
         return $this->render("@AgriGestion/admin/providers/index.html.twig", [
             "providers" => $providers,
             "searches" => $this->getSearches()
+        ]);
+    }
+
+    /**
+     * @Route("/providers/autocomplete/", name="agrigestion_admin_provider_autocomplete")
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function autocomplete(Request $request): JsonResponse
+    {
+        $providers = $this->getDoctrine()->getRepository(Provider::class)->autocomplete($request->get("autocomplete"));
+
+        return new JsonResponse([
+            "autocomplete_results" => $providers
         ]);
     }
 

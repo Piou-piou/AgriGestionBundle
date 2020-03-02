@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * PiouPiou\AgriGestionBundle\Entity\Provider
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="PiouPiou\AgriGestionBundle\Repository\ProviderRepository")
  * @ORM\Table(name="ribsmodule_agrigestion_provider")
  * @ORM\EntityListeners({"PiouPiou\AgriGestionBundle\EventListener\CreateUpdateAwareListener"})
  */
