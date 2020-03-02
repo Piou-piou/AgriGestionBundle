@@ -10,7 +10,7 @@ ribsForms.forEach((form) => {
     autocompleteField.addEventListener('keyup', (event) => {
       const field = event.currentTarget;
       if (field.value.length > 2) {
-        api.post(field.dataset.url, {autocomplete: field.value}).then((data) => {
+        api.post(field.dataset.url, {autocomplete: field.value}, 'html').then((data) => {
           console.log(data);
         });
       }

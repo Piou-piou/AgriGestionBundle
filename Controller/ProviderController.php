@@ -38,13 +38,13 @@ class ProviderController extends AbstractController
     /**
      * @Route("/providers/autocomplete/", name="agrigestion_admin_provider_autocomplete")
      * @param Request $request
-     * @return JsonResponse
+     * @return Response
      */
-    public function autocomplete(Request $request): JsonResponse
+    public function autocomplete(Request $request): Response
     {
         $providers = $this->getDoctrine()->getRepository(Provider::class)->autocomplete($request->get("autocomplete"));
 
-        return new JsonResponse([
+        return $this->render("@AgriGestion/admin/providers/autocomplete.html.twig", [
             "autocomplete_results" => $providers
         ]);
     }

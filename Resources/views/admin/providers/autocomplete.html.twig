@@ -1,0 +1,9 @@
+<ul>
+    {% if autocomplete_results|length > 0 %}
+        {% for result in autocomplete_results %}
+            <li>{{ result.name }}</li>
+        {% endfor %}
+    {% else %}
+        <li>Aucun résultat</li>
+    {% endif %}
+</ul>
