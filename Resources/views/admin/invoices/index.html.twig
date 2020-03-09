@@ -8,7 +8,7 @@
     <div class="ribs-container-fluid">
         {% if ribsadmin_acces_right.testRight("agrigestion@admin@invoice@create") == true %}
             <div class="top-links">
-                <a href="{{ path('agrigestion_admin_article_create') }}" class="ribs-button">Créer une facture</a>
+                <a href="{{ path('agrigestion_admin_invoice_create') }}" class="ribs-button">Créer une facture</a>
             </div>
         {% endif %}
 

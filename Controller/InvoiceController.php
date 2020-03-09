@@ -30,4 +30,48 @@ class InvoiceController extends AbstractController
             "searches" => $this->getSearches()
         ]);
     }
+
+    /**
+     * @Route("/invoices/create/", name="agrigestion_admin_invoice_create")
+     * @Route("/invoices/edit/{id}", name="agrigestion_admin_invoice_edit")
+     * @param Request $request
+     * @param int|null $id
+     * @return Response
+     */
+    public function edit(Request $request, int $id = null): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        if ($id === null) {
+            $invoice = new Invoice();
+        } else {
+            $invoice = $em->getRepository(Invoice::class)->find($id);
+        }
+
+        $form = $this->createForm(\PiouPiou\AgriGestionBundle\Form\Invoice::class, $invoice);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $em->persist($data);
+            $em->flush();
+
+            if ($id === null) {
+                $this->addFlash("success-flash", "La facture ". $invoice->getName() . " a été créée");
+            } else {
+
+                $this->addFlash("success-flash", "La facture ". $invoice->getName() . " a été éditée");
+            }
+
+            return $this->redirectToRoute("agrigestion_admin_article_index");
+        }
+
+        return $this->render("@AgriGestion/admin/invoices/edit.html.twig", [
+            "form" => $form->createView(),
+            "form_errors" => $form->getErrors(),
+            "invoice" => $invoice,
+            "disabled_form" => false
+        ]);
+    }
 }
