@@ -3,6 +3,7 @@
 namespace PiouPiou\AgriGestionBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
+use PiouPiou\RibsAdminBundle\Form\Type\AutocompleteType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -38,14 +39,12 @@ class Article extends AbstractType
                 "choice_label" => "name",
                 "required" => true
             ])
-            /*->add("providerAutocomplete", TextType::class, [
-                "label" => "Fournisseur autocomplete",
-                "attr" => [
-                    "class" => "input-autocomplete",
-                    "data-url" => "agrigestion_admin_provider_autocomplete"
-                ],
+            /*->add("provider", AutocompleteType::class, [
+                "label" => "Fournisseur",
+                "autocomplete_name" => "autocomplete",
+                "data_url" => "agrigestion_admin_provider_autocomplete",
+                "mapped" => false,
                 "required" => false,
-                "mapped" => false
             ])*/
             ->add("submit", SubmitType::class, [
                 "label" => "Validate",

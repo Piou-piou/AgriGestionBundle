@@ -1,3 +1,4 @@
+import RibsCore from "ribs-core";
 import RibsApi from "ribs-api";
 
 const api = new RibsApi('');
@@ -11,11 +12,14 @@ ribsForms.forEach((form) => {
   document.querySelector('.input-autocomplete').after(div);
 
   autocompleteFields.forEach((autocompleteField) => {
+    const autocompleteFieldWidth = RibsCore.getWidth(autocompleteField);
+
     autocompleteField.addEventListener('keyup', (event) => {
       const field = event.currentTarget;
       if (field.value.length > 2) {
         api.post(field.dataset.url, {autocomplete: field.value}, 'html').then((data) => {
           const autocompleteResult = autocompleteField.parentNode.querySelector('.result-autocomplete');
+          autocompleteResult.style.width = `${autocompleteFieldWidth}px`;
           autocompleteResult.innerHTML = data;
         });
       }
