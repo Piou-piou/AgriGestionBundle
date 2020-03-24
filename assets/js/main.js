@@ -13,6 +13,7 @@ ribsForms.forEach((form) => {
 
   autocompleteFields.forEach((autocompleteField) => {
     const autocompleteFieldWidth = RibsCore.getWidth(autocompleteField);
+    const autocompleteHiddenField = autocompleteField.parentNode.querySelector(`#${autocompleteField.id}_id`);
 
     autocompleteField.addEventListener('keyup', (event) => {
       const field = event.currentTarget;
@@ -21,6 +22,15 @@ ribsForms.forEach((form) => {
           const autocompleteResult = autocompleteField.parentNode.querySelector('.result-autocomplete');
           autocompleteResult.style.width = `${autocompleteFieldWidth}px`;
           autocompleteResult.innerHTML = data;
+
+          autocompleteResult.querySelector('li').addEventListener('click', (event) => {
+            console.log(event.currentTarget.textContent);
+            console.log(event.currentTarget.dataset.id);
+
+            autocompleteHiddenField.value = event.currentTarget.dataset.id;
+            autocompleteField.value = event.currentTarget.textContent;
+            autocompleteResult.innerHTML = '';
+          });
         });
       }
     });
