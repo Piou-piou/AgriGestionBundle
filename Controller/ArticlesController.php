@@ -51,7 +51,10 @@ class ArticlesController extends AbstractController
             $article = $em->getRepository(Article::class)->find($id);
         }
 
-        $form = $this->createForm(\PiouPiou\AgriGestionBundle\Form\Article::class, $article, ["disabled" => $disabled_form]);
+        $form = $this->createForm(\PiouPiou\AgriGestionBundle\Form\Article::class, $article, [
+            "disabled" => $disabled_form,
+            "em" => $em
+        ]);
 
         $form->handleRequest($request);
 
