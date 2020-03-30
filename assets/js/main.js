@@ -24,9 +24,6 @@ ribsForms.forEach((form) => {
           autocompleteResult.innerHTML = data;
 
           autocompleteResult.querySelector('li').addEventListener('click', (event) => {
-            console.log(event.currentTarget.textContent);
-            console.log(event.currentTarget.dataset.id);
-
             autocompleteHiddenField.value = event.currentTarget.dataset.id;
             autocompleteField.value = event.currentTarget.textContent;
             autocompleteResult.innerHTML = '';
