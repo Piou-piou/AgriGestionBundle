@@ -25,6 +25,9 @@ class Article extends AbstractType
         $builder
             ->add("name", TextType::class, [
                 "label" => "Désignation",
+                "attr" => [
+                    "autocomplete" => "off",
+                ],
                 "required" => true
             ])
             ->add("reference", TextType::class, [
