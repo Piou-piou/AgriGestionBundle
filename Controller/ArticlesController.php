@@ -26,7 +26,7 @@ class ArticlesController extends AbstractController
     {
         $articles = $this->doSearch($em, $request->get("search") ?? [], Article::class);
 
-        return $this->render("@AgriGestion/admin/articles/index.html.twig", [
+        return $this->render("@AgriGestion/admin/management/articles/index.html.twig", [
             "articles" => $articles,
             "searches" => $this->getSearches()
         ]);
@@ -72,7 +72,7 @@ class ArticlesController extends AbstractController
             return $this->redirectToRoute("agrigestion_admin_article_index");
         }
 
-        return $this->render("@AgriGestion/admin/articles/edit.html.twig", [
+        return $this->render("@AgriGestion/admin/management/articles/edit.html.twig", [
             "form" => $form->createView(),
             "form_errors" => $form->getErrors(),
             "article" => $article,
@@ -124,7 +124,7 @@ class ArticlesController extends AbstractController
             return $this->redirectToRoute("agrigestion_admin_article_edit", ["id" => $article_id]);
         }
 
-        return $this->render("@AgriGestion/admin/articles/edit-price.html.twig", [
+        return $this->render("@AgriGestion/admin/management/articles/edit-price.html.twig", [
             "form" => $form->createView(),
             "form_errors" => $form->getErrors(),
             "article" => $article,

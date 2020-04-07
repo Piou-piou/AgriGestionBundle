@@ -25,7 +25,7 @@ class InvoiceController extends AbstractController
     {
         $invoices = $this->doSearch($em, $request->get("search") ?? [], Invoice::class);
 
-        return $this->render("@AgriGestion/admin/invoices/index.html.twig", [
+        return $this->render("@AgriGestion/admin/management/invoices/index.html.twig", [
             "invoices" => $invoices,
             "searches" => $this->getSearches()
         ]);
@@ -67,7 +67,7 @@ class InvoiceController extends AbstractController
             return $this->redirectToRoute("agrigestion_admin_article_index");
         }
 
-        return $this->render("@AgriGestion/admin/invoices/edit.html.twig", [
+        return $this->render("@AgriGestion/admin/management/invoices/edit.html.twig", [
             "form" => $form->createView(),
             "form_errors" => $form->getErrors(),
             "invoice" => $invoice,

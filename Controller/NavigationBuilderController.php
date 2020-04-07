@@ -26,6 +26,6 @@ class NavigationBuilderController extends AbstractController
             }
         }
 
-        return $this->render("@AgriGestion/admin/navigation.html.twig", ["navigation" => $nav]);
+        return $this->render("@AgriGestion/admin/management/navigation.html.twig", ["navigation" => $nav]);
     }
 }

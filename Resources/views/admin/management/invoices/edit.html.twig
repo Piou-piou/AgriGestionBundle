@@ -2,7 +2,7 @@
 {% form_theme form '@RibsAdmin/forms/template.html.twig' %}
 
 {% block nav_page %}
-    {% include "@AgriGestion/admin/top_nav.html.twig" %}
+    {% include "@AgriGestion/admin/management/top_nav.html.twig" %}
 {% endblock %}
 
 {% block body %}
@@ -10,18 +10,17 @@
         {{ form_start(form) }}
         <div class="top-links">
             {% if disabled_form %}
-                <a href="{{ path('agrigestion_admin_provider_edit', {'id': provider_address.provider.id}) }}"  class="ribs-button ">Retour</a>
+                <a href="{{ path('agrigestion_admin_invoice_index') }}" class="ribs-button ">Retour</a>
             {% else %}
-                <a href="{{ path('agrigestion_admin_provider_edit', {'id': provider_address.provider.id}) }}"  class="ribs-button danger">Annuler</a>
+                <a href="{{ path('agrigestion_admin_invoice_index') }}" class="ribs-button danger">Annuler</a>
                 {{ form_widget(form.submit) }}
             {% endif %}
         </div>
 
         <div class="page-title">
-            <span>Fournisseur</span>
-            <h3>{% if provider_address.id %}Edition de l'adresse {{ provider_address.name }}{% else %}Création d'une adresse{% endif %}</h3>
+            <span>Facture</span>
+            <h3>{% if invoice.id %}Edition de {{ invoice.number }}{% else %}Création{% endif %}</h3>
         </div>
-
 
         <div class="row">
             <div class="cxs-12">
@@ -32,36 +31,33 @@
 
                     <div class="row form-group">
                         <div class="cxs-12 cmd-6">
-                            {{ form_row(form.name) }}
+                            {{ form_row(form.number) }}
+                        </div>
+                        <div class="cxs-12 cmd-6">
+                            {{ form_row(form.date) }}
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="cxs-12 cmd-6">
-                            {{ form_row(form.address) }}
+                            {{ form_row(form.payment_date) }}
                         </div>
                         <div class="cxs-12 cmd-6">
-                            {{ form_row(form.address1) }}
+                            {{ form_row(form.due_date) }}
                         </div>
                     </div>
-                    <div class="row form-group">
+                    {#<div class="row form-group">
                         <div class="cxs-12 cmd-6">
-                            {{ form_row(form.postalCode) }}
+                            {{ form_row(form.providerAutocomplete) }}
                         </div>
-                        <div class="cxs-12 cmd-6">
-                            {{ form_row(form.city) }}
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="cxs-12 cmd-6">
-                            {{ form_row(form.state) }}
-                        </div>
-                        <div class="cxs-12 cmd-6">
-                            {{ form_row(form.country) }}
-                        </div>
-                    </div>
+                    </div>#}
                 </div>
             </div>
         </div>
     </div>
     {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/agrigestion/js/main.js') }}"></script>
 {% endblock %}

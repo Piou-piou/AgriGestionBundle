@@ -29,7 +29,7 @@ class ProviderController extends AbstractController
     {
         $providers = $this->doSearch($em, $request->get("search") ?? [], Provider::class);
 
-        return $this->render("@AgriGestion/admin/providers/index.html.twig", [
+        return $this->render("@AgriGestion/admin/management/providers/index.html.twig", [
             "providers" => $providers,
             "searches" => $this->getSearches()
         ]);
@@ -44,7 +44,7 @@ class ProviderController extends AbstractController
     {
         $providers = $this->getDoctrine()->getRepository(Provider::class)->autocomplete($request->get("autocomplete"));
 
-        return $this->render("@AgriGestion/admin/providers/autocomplete.html.twig", [
+        return $this->render("@AgriGestion/admin/management/providers/autocomplete.html.twig", [
             "autocomplete_results" => $providers
         ]);
     }
@@ -86,7 +86,7 @@ class ProviderController extends AbstractController
             return $this->redirectToRoute("agrigestion_admin_provider_index");
         }
 
-        return $this->render("@AgriGestion/admin/providers/edit.html.twig", [
+        return $this->render("@AgriGestion/admin/management/providers/edit.html.twig", [
             "form" => $form->createView(),
             "form_errors" => $form->getErrors(),
             "provider" => $provider,
@@ -158,7 +158,7 @@ class ProviderController extends AbstractController
             return $this->redirectToRoute("agrigestion_admin_provider_edit", ["id" => $provider_id]);
         }
 
-        return $this->render("@AgriGestion/admin/providers/edit-address.html.twig", [
+        return $this->render("@AgriGestion/admin/management/providers/edit-address.html.twig", [
             "form" => $form->createView(),
             "form_errors" => $form->getErrors(),
             "provider_address" => $provider_address,
@@ -209,7 +209,7 @@ class ProviderController extends AbstractController
             return $this->redirectToRoute("agrigestion_admin_provider_edit", ["id" => $provider_id]);
         }
 
-        return $this->render("@AgriGestion/admin/providers/edit-contact.html.twig", [
+        return $this->render("@AgriGestion/admin/management/providers/edit-contact.html.twig", [
             "form" => $form->createView(),
             "form_errors" => $form->getErrors(),
             "provider_contact" => $provider_contact,
