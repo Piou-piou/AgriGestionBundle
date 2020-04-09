@@ -64,6 +64,11 @@
       "right": "agrigestion@admin@invoice@index",
       "url": "agrigestion_admin_invoice_index",
       "text": "Index page of invoices"
+    },
+    {
+      "right": "agriparceln@admin@index",
+      "url": "agriparceln_admin_index",
+      "text": "Index page of Agri Parcelle"
     }
   ]
 }

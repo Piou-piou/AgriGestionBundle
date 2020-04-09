@@ -16,4 +16,13 @@ class DefaultController extends AbstractController
     {
         return $this->render("@AgriGestion/admin/management/index.html.twig");
     }
+
+    /**
+     * @Route("/index-parcel/", name="agriparcel_admin_index")
+     * @return Response
+     */
+    public function indexParcel():Response
+    {
+        return $this->render("@AgriGestion/admin/parcel/index.html.twig");
+    }
 }

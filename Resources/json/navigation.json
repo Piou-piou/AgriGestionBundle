@@ -26,6 +26,12 @@
       "icon": "",
       "text": "Factures",
       "position": "top"
+    },
+    {
+      "right": "agriparceln@admin@index",
+      "url": "agriparcel_admin_index",
+      "icon": "",
+      "text": "Agri Parcelle"
     }
   ]
 }
