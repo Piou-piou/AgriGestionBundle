@@ -37,6 +37,14 @@
       "icon": "",
       "text": "Agri Parcelle",
       "part": "parcel"
+    },
+    {
+      "right": "agriparcel@admin@parcel@show",
+      "url": "agriparcel_admin_parcel_index",
+      "icon": "",
+      "text": "Parcelles",
+      "position": "top",
+      "part": "parcel"
     }
   ]
 }

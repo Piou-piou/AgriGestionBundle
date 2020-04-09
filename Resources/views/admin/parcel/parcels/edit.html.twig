@@ -1,0 +1,50 @@
+{% extends "@RibsAdmin/base.html.twig" %}
+{% form_theme form '@RibsAdmin/forms/template.html.twig' %}
+
+{% block nav_page %}
+    {% include "@AgriGestion/admin/parcel/top_nav.html.twig" %}
+{% endblock %}
+
+{% block body %}
+    <div class="ribs-container-fluid">
+        {{ form_start(form) }}
+        <div class="top-links">
+            {% if disabled_form %}
+                <a href="{{ path('agriparcel_admin_parcel_index') }}" class="ribs-button ">Retour</a>
+            {% else %}
+                <a href="{{ path('agriparcel_admin_parcel_index') }}" class="ribs-button danger">Annuler</a>
+                {{ form_widget(form.submit) }}
+            {% endif %}
+        </div>
+
+        <div class="page-title">
+            <span>Parcelle</span>
+            <h3>{% if parcel.id %}Edition de {{ parcel.name }}{% else %}Création{% endif %}</h3>
+        </div>
+
+        <div class="row">
+            <div class="cxs-12">
+                <div class="block">
+                    <header>
+                        <h5>Informations</h5>
+                    </header>
+
+                    <div class="row form-group">
+                        <div class="cxs-12 cmd-6">
+                            {{ form_row(form.name) }}
+                        </div>
+                        <div class="cxs-12 cmd-6">
+                            {{ form_row(form.surface) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/agrigestion/js/main.js') }}"></script>
+{% endblock %}

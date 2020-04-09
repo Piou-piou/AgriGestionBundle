@@ -69,6 +69,21 @@
       "right": "agriparceln@admin@index",
       "url": "agriparceln_admin_index",
       "text": "Index page of Agri Parcelle"
+    },
+    {
+      "right": "agriparcel@admin@parcel@show",
+      "url": "agriparcel_admin_parcel_show",
+      "text": "Show a parcel in Agri Parcelle"
+    },
+    {
+      "right": "agriparcel@admin@parcel@create",
+      "url": "agriparcel_admin_parcel_create",
+      "text": "Create a parcel in Agri Parcelle"
+    },
+    {
+      "right": "agriparcel@admin@parcel@edit",
+      "url": "agriparcel_admin_parcel_edit",
+      "text": "Edit a parcel in Agri Parcelle"
     }
   ]
 }

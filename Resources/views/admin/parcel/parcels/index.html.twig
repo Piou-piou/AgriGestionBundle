@@ -1,0 +1,84 @@
+{% extends "@RibsAdmin/base.html.twig" %}
+
+{% block nav_page %}
+    {% include "@AgriGestion/admin/parcel/top_nav.html.twig" %}
+{% endblock %}
+
+{% block body %}
+    <div class="ribs-container-fluid">
+        {% if ribsadmin_acces_right.testRight("agriparcel@admin@parcel@create") == true %}
+            <div class="top-links">
+                <a href="{{ path('agriparcel_admin_parcel_create') }}" class="ribs-button">Créer une parcelle</a>
+            </div>
+        {% endif %}
+
+        <div class="page-title">
+            <span>Vue d'ensemble</span>
+            <h3>Liste des parcelles</h3>
+        </div>
+        <div class="row">
+            <div class="cxs-12">
+                <form class="block ribs-form" action="{{ path("agriparcel_admin_parcel_index") }}" method="POST">
+                    <header>
+                        <h5>recherche</h5>
+                    </header>
+
+                    <div class="row">
+                        <div class="cxs-12 cmd-3 form-group">
+                            <div>
+                                <label for="search_name">Désignation</label>
+                                <input type="text" name="search[name]" id="search_name" value="{{ searches.name is defined ? searches.name : null }}" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <footer>
+                        <button class="ribs-button">Rechercher</button>
+                    </footer>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="cxs-12">
+                <div class="block">
+                    <header>
+                        <h5>Parcelles actives</h5>
+                    </header>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Désignation</th>
+                                <th>Surface (en hectares)</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for parcel in parcels %}
+                                <tr>
+                                    <td>{{ parcel.name }}</td>
+                                    <td>{{ parcel.surface }}</td>
+                                    <td>
+                                        <a href="{{ path('agriparcel_admin_parcel_show', {"id": parcel.id}) }}">
+                                            Voir
+                                        </a>
+                                        {% if ribsadmin_acces_right.testRight("agriparcel@admin@parcel@edit") == true %}
+                                            <a href="{{ path('agriparcel_admin_parcel_edit', {"id": parcel.id}) }}">
+                                                Modifier
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="7" class="text-center">Aucune parcelle trouvée</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
