@@ -4,34 +4,39 @@
       "right": "agrigestion@admin@index",
       "url": "agrigestion_admin_index",
       "icon": "",
-      "text": "Agri Gestion"
+      "text": "Agri Gestion",
+      "part": "gestion"
     },
     {
       "right": "agrigestion@admin@providers@index",
       "url": "agrigestion_admin_provider_index",
       "icon": "",
       "text": "Fournisseurs",
-      "position": "top"
+      "position": "top",
+      "part": "gestion"
     },
     {
       "right": "agrigestion@admin@article@index",
       "url": "agrigestion_admin_article_index",
       "icon": "",
       "text": "Articles",
-      "position": "top"
+      "position": "top",
+      "part": "gestion"
     },
     {
       "right": "agrigestion@admin@invoice@index",
       "url": "agrigestion_admin_invoice_index",
       "icon": "",
       "text": "Factures",
-      "position": "top"
+      "position": "top",
+      "part": "gestion"
     },
     {
       "right": "agriparceln@admin@index",
       "url": "agriparcel_admin_index",
       "icon": "",
-      "text": "Agri Parcelle"
+      "text": "Agri Parcelle",
+      "part": "parcel"
     }
   ]
 }

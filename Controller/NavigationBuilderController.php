@@ -13,19 +13,40 @@ class NavigationBuilderController extends AbstractController
     /**
      * @param Globals $globals
      * @param AccessRights $access_rights
-     * @return Response
+     * @param string $part
+     * @return array
      */
-    public function getPageNavigation(Globals $globals, AccessRights $access_rights): Response
+    private function getNavigation(Globals $globals, AccessRights $access_rights, string $part = "gestion")
     {
         $module = $this->getDoctrine()->getRepository(Module::class)->findOneBy(["packageName" => "piou-piou/agri-gestion-bundle"]);
         $navigation = json_decode(file_get_contents($globals->getBaseBundlePath($module->getPackageName(), $module->getDevMode()) . "/Resources/json/navigation.json"), true);
         $nav = [];
         foreach ($navigation["items"] as $item) {
-            if ($access_rights->testRight($item["right"]) && isset($item["position"]) && $item["position"] === "top") {
+            if ($access_rights->testRight($item["right"]) && isset($item["position"]) && $item["position"] === "top" && $item["part"] === $part) {
                 $nav[] = $item;
             }
         }
 
-        return $this->render("@AgriGestion/admin/management/navigation.html.twig", ["navigation" => $nav]);
+        return $nav;
+    }
+
+    /**
+     * @param Globals $globals
+     * @param AccessRights $access_rights
+     * @return Response
+     */
+    public function getPageNavigation(Globals $globals, AccessRights $access_rights): Response
+    {
+        return $this->render("@AgriGestion/admin/navigation.html.twig", ["navigation" => $this->getNavigation($globals, $access_rights)]);
+    }
+
+    /**
+     * @param Globals $globals
+     * @param AccessRights $access_rights
+     * @return Response
+     */
+    public function getParcelPageNavigation(Globals $globals, AccessRights $access_rights): Response
+    {
+        return $this->render("@AgriGestion/admin/navigation.html.twig", ["navigation" => $this->getNavigation($globals, $access_rights, "parcel")]);
     }
 }
