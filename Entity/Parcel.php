@@ -4,6 +4,7 @@ namespace PiouPiou\AgriGestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Entity\Parcel
@@ -22,11 +23,13 @@ class Parcel
 
     /**
      * @ORM\Column(name="`name`", type="string", length=255)
+     * @Groups("main")
      */
     protected $name;
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     * @Groups("main")
      */
     protected $surface;
 

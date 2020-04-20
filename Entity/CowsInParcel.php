@@ -3,6 +3,7 @@
 namespace PiouPiou\AgriGestionBundle\Entity;;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Entity\CowsInParcel
@@ -21,27 +22,32 @@ class CowsInParcel
 
     /**
      * @ORM\Column(type="date")
+     * @Groups("main")
      */
     protected $start_date;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Groups("main")
      */
     protected $end_date;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("main")
      */
     protected $cow_number;
 
     /**
      * @ORM\Column(name="`type`", type="smallint", nullable=true)
+     * @Groups("main")
      */
     protected $type;
 
     /**
      * @ORM\ManyToOne(targetEntity="Parcel", inversedBy="cowsInParcels")
      * @ORM\JoinColumn(name="parcel_id", referencedColumnName="id", nullable=false)
+     * @Groups("main")
      */
     protected $parcel;
 
