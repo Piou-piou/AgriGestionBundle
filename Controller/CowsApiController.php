@@ -62,4 +62,38 @@ class CowsApiController extends AbstractController
             "token" => $session->get("account_token")->getToken()
         ]);
     }
+
+    /**
+     * @Route("/api/cows/exit", name="agriparcel_api_admin_cows_exit", methods={"POST"})
+     * @param EntityManagerInterface $em
+     * @param SessionInterface $session
+     * @param Api $api
+     * @return JsonResponse
+     * @throws Exception
+     */
+    public function exitCows(EntityManagerInterface $em, SessionInterface $session, Api $api): JsonResponse
+    {
+        $infos = $session->get("jwt_infos");
+        $cows_in_Parcel = $em->getRepository(CowsInParcel::class)->find($infos->id);
+
+        if ($cows_in_Parcel) {
+            $cows_in_Parcel->setEndDate(new DateTime());
+            $em->persist($cows_in_Parcel);
+            $em->flush();
+            $cows_in_parcels = $em->getRepository(CowsInParcel::class)->findBy(["end_date" => null]);
+
+            return new JsonResponse([
+                "success" => true,
+                "success_message" => "Les vaches ont été sorties de la parcelle " . $cows_in_Parcel->getParcel()->getName(),
+                "cows_in_parcel" => $api->serializeObject($cows_in_parcels),
+                "token" => $session->get("account_token")->getToken()
+            ]);
+        }
+
+        return new JsonResponse([
+            "success" => false,
+            "error_message" => "Parcelle inexistante, merci de réessayer",
+            "token" => $session->get("account_token")->getToken()
+        ]);
+    }
 }
