@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * Entity\CowsInParcel
  *
  * @ORM\Entity()
- * @ORM\Table(name="cows_in_parcel", indexes={@ORM\Index(name="fk_parcel_activity_parcel1_idx", columns={"parcel_id"})})
+ * @ORM\Table(name="ribsmodule_agrigestion_cows_in_parcel", indexes={@ORM\Index(name="fk_parcel_activity_parcel1_idx", columns={"parcel_id"})})
  */
 class CowsInParcel
 {

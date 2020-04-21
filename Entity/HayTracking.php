@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Entity\HayTracking
  *
  * @ORM\Entity()
- * @ORM\Table(name="hay_tracking", indexes={@ORM\Index(name="fk_hay_tracking_parcel1_idx", columns={"parcel_id"})})
+ * @ORM\Table(name="ribsmodule_agrigestion_hay_tracking", indexes={@ORM\Index(name="fk_hay_tracking_parcel1_idx", columns={"parcel_id"})})
  */
 class HayTracking
 {
