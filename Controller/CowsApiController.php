@@ -25,7 +25,7 @@ class CowsApiController extends AbstractController
      */
     public function index(EntityManagerInterface $em, SessionInterface $session, Api $api): JsonResponse
     {
-        $cows_in_parcels = $em->getRepository(CowsInParcel::class)->findAll();
+        $cows_in_parcels = $em->getRepository(CowsInParcel::class)->findBy(["end_date" => null]);
 
         return new JsonResponse([
             "success" => true,
