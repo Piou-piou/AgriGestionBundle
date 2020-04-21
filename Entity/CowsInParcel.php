@@ -198,4 +198,22 @@ class CowsInParcel
     {
         return array('id', 'start_date', 'end_date', 'cow_number', 'type');
     }
+
+    /**
+     * @return mixed
+     * @Groups("main")
+     */
+    public function getFormattedStartDate()
+    {
+        return $this->getStartDate()->format("d/m/Y");
+    }
+
+    /**
+     * @return mixed
+     * @Groups("main")
+     */
+    public function getFormattedEndDate()
+    {
+        return $this->getEndDate() ? $this->getEndDate()->format("d/m/Y") : null;
+    }
 }
