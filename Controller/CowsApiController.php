@@ -15,8 +15,27 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CowsApiController extends AbstractController
 {
+
     /**
-     * @Route("/api/cows/add", name="agriparcel_api_admin_cows_add")
+     * @Route("/api/cows/list", name="agriparcel_api_admin_cows_list", methods={"POST"})
+     * @param EntityManagerInterface $em
+     * @param SessionInterface $session
+     * @param Api $api
+     * @return JsonResponse
+     */
+    public function index(EntityManagerInterface $em, SessionInterface $session, Api $api): JsonResponse
+    {
+        $cows_in_parcels = $em->getRepository(CowsInParcel::class)->findAll();
+
+        return new JsonResponse([
+            "success" => true,
+            "cows_in_parcel" => $api->serializeObject($cows_in_parcels),
+            "token" => $session->get("account_token")->getToken()
+        ]);
+    }
+
+    /**
+     * @Route("/api/cows/add", name="agriparcel_api_admin_cows_add", methods={"POST"})
      * @param EntityManagerInterface $em
      * @param SessionInterface $session
      * @param Api $api
@@ -39,7 +58,7 @@ class CowsApiController extends AbstractController
 
         return new JsonResponse([
             "success" => true,
-            "success_message" => $infos->start_date,
+            "success_message" => "Les vaches ont été ajoutées à la parcelle " .$parcel->getName(),
             "token" => $session->get("account_token")->getToken()
         ]);
     }
