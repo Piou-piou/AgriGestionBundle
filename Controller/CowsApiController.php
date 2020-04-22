@@ -40,6 +40,7 @@ class CowsApiController extends AbstractController
      * @param SessionInterface $session
      * @param Api $api
      * @return JsonResponse
+     * @throws Exception
      */
     public function add(EntityManagerInterface $em, SessionInterface $session, Api $api): JsonResponse
     {
@@ -47,6 +48,16 @@ class CowsApiController extends AbstractController
         $start_date = DateTime::createFromFormat("Y-m-d", explode("T", $infos->start_date)[0]);
         $end_date = $infos->end_date ? DateTime::createFromFormat("Y-m-d", explode("T", $infos->end_date)[0]) : null;
         $parcel = $em->getRepository(Parcel::class)->findOneBy(["id" => $infos->parcel_id]);
+
+        $cows_exist = $em->getRepository(CowsInParcel::class)->findOneBy([
+            "cow_number" => $infos->cows_number
+        ]);
+
+        if ($cows_exist) {
+            $cows_exist->setEndDate(new DateTime());
+            $em->persist($cows_exist);
+            $em->flush();
+        }
 
         $cows_in_Parcel = new CowsInParcel();
         $cows_in_Parcel->setCowNumber($infos->cows_number);
