@@ -3,7 +3,6 @@
 namespace PiouPiou\AgriGestionBundle\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
-use PiouPiou\AgriGestionBundle\Entity\CowsInParcel;
 use PiouPiou\AgriGestionBundle\Entity\Parcel;
 use PiouPiou\RibsAdminBundle\Service\Api;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
