@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * Entity\Parcel
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="PiouPiou\AgriGestionBundle\Repository\ParcelRepository")
  * @ORM\Table(name="ribsmodule_agrigestion_parcel")
  */
 class Parcel
@@ -207,11 +207,7 @@ class Parcel
     {
         $last_date = null;
         foreach ($this->getCowsInParcels() as $cowsInParcel) {
-            if (!$cowsInParcel->getEndDate()) {
-                $last_date = new \DateTime();
-                break;
-            }
-            if (!$last_date || $last_date > $cowsInParcel->getEndDate()) {
+            if ($cowsInParcel->getEndDate() && (!$last_date || $last_date > $cowsInParcel->getEndDate())) {
                 $last_date = $cowsInParcel->getEndDate();
             }
         }
@@ -226,5 +222,14 @@ class Parcel
     public function getFormattedLastDateWithCows()
     {
         return $this->getLastDateWithCows() ? $this->getLastDateWithCows()->format("d/m/Y") : null;
+    }
+
+    /**
+     * @Groups("main")
+     * @return int
+     */
+    public function getCowsNumber()
+    {
+        return $this->getCowsInParcels() ? $this->getCowsInParcels()->first()->getCowNumber() : 0;
     }
 }
