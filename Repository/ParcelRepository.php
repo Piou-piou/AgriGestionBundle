@@ -6,6 +6,9 @@ use Doctrine\ORM\EntityRepository;
 
 class ParcelRepository extends EntityRepository
 {
+    /**
+     * @return mixed
+     */
     public function findByOldEndDate()
     {
         $query = $this->getEntityManager()->createQuery("
