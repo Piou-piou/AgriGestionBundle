@@ -11,10 +11,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: When composer update
+      uses: MontyD/package-json-updated-action
+      id: version-updated
+      with:
+        path: package.json
+      env:
+        GITHUB_TOKEN: ${{ secrets.COMPOSER_KEY }}
     - name: SSH Execute Commands
+      if: steps.version-updated.outputs.has-updated
       uses: JimCronqvist/action-ssh@0.1.1
       with:
         command: /home/${{ secrets.DEV_SRV_USER }}/${{ secrets.SCRIPT }}.sh
         hosts: ${{ secrets.DEV_SRV_URL }}
         privateKey: ${{ secrets.SSH_KEY }}
-        debug: # optional
