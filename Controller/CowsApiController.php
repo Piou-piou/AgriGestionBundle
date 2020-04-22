@@ -50,7 +50,8 @@ class CowsApiController extends AbstractController
         $parcel = $em->getRepository(Parcel::class)->findOneBy(["id" => $infos->parcel_id]);
 
         $cows_exist = $em->getRepository(CowsInParcel::class)->findOneBy([
-            "cow_number" => $infos->cows_number
+            "cow_number" => $infos->cows_number,
+            "end_date" => null
         ]);
 
         if ($cows_exist) {
