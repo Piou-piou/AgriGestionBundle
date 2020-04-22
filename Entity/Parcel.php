@@ -4,6 +4,7 @@ namespace PiouPiou\AgriGestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Exception;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -196,5 +197,34 @@ class Parcel
     public function __sleep()
     {
         return array('id', 'name', 'surface');
+    }
+
+    /**
+     * @return ArrayCollection
+     * @throws Exception
+     */
+    public function getLastDateWithCows()
+    {
+        $last_date = null;
+        foreach ($this->getCowsInParcels() as $cowsInParcel) {
+            if (!$cowsInParcel->getEndDate()) {
+                $last_date = new \DateTime();
+                break;
+            }
+            if (!$last_date || $last_date > $cowsInParcel->getEndDate()) {
+                $last_date = $cowsInParcel->getEndDate();
+            }
+        }
+        return $last_date;
+    }
+
+    /**
+     * @Groups("main")
+     * @return mixed
+     * @throws Exception
+     */
+    public function getFormattedLastDateWithCows()
+    {
+        return $this->getLastDateWithCows() ? $this->getLastDateWithCows()->format("d/m/Y") : null;
     }
 }
