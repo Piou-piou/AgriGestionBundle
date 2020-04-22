@@ -11,13 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: When composer update
-      uses: MontyD/package-json-updated-action@1.0.1
-      id: version-updated
+    - name: Sleep for 300 seconds
+      uses: jakejarvis/wait-action@master
       with:
-        path: package.json
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        time: '120s'
     - name: SSH Execute Commands
       if: steps.version-updated.outputs.has-updated
       uses: JimCronqvist/action-ssh@0.1.1
