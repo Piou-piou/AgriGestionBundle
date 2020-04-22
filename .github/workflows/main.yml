@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: When composer update
-      uses: MontyD/package-json-updated-action
+      uses: MontyD/package-json-updated-action@1.0.1
       id: version-updated
       with:
         path: package.json
