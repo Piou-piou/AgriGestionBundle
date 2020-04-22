@@ -13,6 +13,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
  */
 class CowsInParcel
 {
+    const TYPE = [
+        "PENSION" => "Pension",
+        "DRY_UP" => "Tarie",
+        "MILKING" => "Trayante"
+    ];
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")

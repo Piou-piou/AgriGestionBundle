@@ -35,6 +35,22 @@ class CowsApiController extends AbstractController
     }
 
     /**
+     * @Route("/api/cows/list-types", name="agriparcel_api_admin_cows_list_types", methods={"POST"})
+     * @param EntityManagerInterface $em
+     * @param SessionInterface $session
+     * @param Api $api
+     * @return JsonResponse
+     */
+    public function list(EntityManagerInterface $em, SessionInterface $session, Api $api): JsonResponse
+    {
+        return new JsonResponse([
+            "success" => true,
+            "types" => CowsInParcel::TYPE,
+            "token" => $session->get("account_token")->getToken()
+        ]);
+    }
+
+    /**
      * @Route("/api/cows/add", name="agriparcel_api_admin_cows_add", methods={"POST"})
      * @param EntityManagerInterface $em
      * @param SessionInterface $session
