@@ -17,7 +17,7 @@ jobs:
       with:
         path: package.json
       env:
-        GITHUB_TOKEN: ${{ secrets.COMPOSER_KEY }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: SSH Execute Commands
       if: steps.version-updated.outputs.has-updated
       uses: JimCronqvist/action-ssh@0.1.1
