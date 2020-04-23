@@ -46,7 +46,7 @@ class CowsInParcel
     protected $cow_number;
 
     /**
-     * @ORM\Column(name="`type`", type="smallint", nullable=true)
+     * @ORM\Column(name="`type`", type="string", length=255, nullable=true)
      * @Groups("main")
      */
     protected $type;
@@ -157,7 +157,7 @@ class CowsInParcel
     /**
      * Set the value of type.
      *
-     * @param integer $type
+     * @param string $type
      * @return CowsInParcel
      */
     public function setType($type)
@@ -170,7 +170,7 @@ class CowsInParcel
     /**
      * Get the value of type.
      *
-     * @return integer
+     * @return string
      */
     public function getType()
     {

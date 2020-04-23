@@ -78,6 +78,7 @@ class CowsApiController extends AbstractController
 
         $cows_in_Parcel = new CowsInParcel();
         $cows_in_Parcel->setCowNumber($infos->cows_number);
+        $cows_in_Parcel->setType($infos->type);
         $cows_in_Parcel->setStartDate($start_date);
         $cows_in_Parcel->setEndDate($end_date);
         $cows_in_Parcel->setParcel($parcel);
