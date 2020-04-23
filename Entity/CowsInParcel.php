@@ -222,4 +222,14 @@ class CowsInParcel
     {
         return $this->getEndDate() ? $this->getEndDate()->format("d/m/Y") : null;
     }
+
+    /**
+     * @return mixed
+     * @Groups("main")
+     */
+    public function getFormattedType()
+    {
+        $type = $this->getType() ?? 'MILKING';
+        return CowsInParcel::TYPE[$type];
+    }
 }
