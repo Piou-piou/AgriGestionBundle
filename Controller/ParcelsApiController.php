@@ -3,6 +3,7 @@
 namespace PiouPiou\AgriGestionBundle\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use PiouPiou\AgriGestionBundle\Entity\Parcel;
 use PiouPiou\RibsAdminBundle\Service\Api;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,6 +19,7 @@ class ParcelsApiController extends AbstractController
      * @param SessionInterface $session
      * @param Api $api
      * @return JsonResponse
+     * @throws Exception
      */
     public function list(EntityManagerInterface $em, SessionInterface $session, Api $api): JsonResponse
     {
@@ -25,7 +27,7 @@ class ParcelsApiController extends AbstractController
 
         return new JsonResponse([
             "success" => true,
-            "parcels" => $api->serializeObject($parcels),
+            "parcels" => $parcels,
             "token" => $session->get("account_token")->getToken()
         ]);
     }

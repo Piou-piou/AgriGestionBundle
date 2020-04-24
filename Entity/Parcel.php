@@ -207,8 +207,11 @@ class Parcel
     {
         $last_date = null;
         foreach ($this->getCowsInParcels() as $cowsInParcel) {
-            if ($cowsInParcel->getEndDate() && (!$last_date || $last_date > $cowsInParcel->getEndDate())) {
+            if ($cowsInParcel->getEndDate() && (!$last_date || $last_date < $cowsInParcel->getEndDate())) {
                 $last_date = $cowsInParcel->getEndDate();
+            }
+            if (!$cowsInParcel->getEndDate()) {
+                $last_date = null;
             }
         }
         return $last_date;

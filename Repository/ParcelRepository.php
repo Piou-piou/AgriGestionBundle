@@ -3,20 +3,51 @@
 namespace PiouPiou\AgriGestionBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use PiouPiou\AgriGestionBundle\Entity\Parcel;
 
 class ParcelRepository extends EntityRepository
 {
     /**
-     * @return mixed
+     * @return array
+     * @throws \Exception
      */
     public function findByOldEndDate()
     {
         $query = $this->getEntityManager()->createQuery("
-            SELECT p, CASE WHEN cip.end_date IS NULL THEN 0 ELSE 1 END AS HIDDEN end_date_null FROM AgriGestionBundle:Parcel p
-            JOIN AgriGestionBundle:CowsInParcel cip WITH cip.parcel = p
-            ORDER BY end_date_null DESC, cip.end_date ASC
+            SELECT p FROM AgriGestionBundle:Parcel p
         ");
 
-        return $query->getResult();
+        $end_parcels = [];
+        $parcels = $query->getResult();
+
+        /** @var Parcel $parcel */
+        foreach ($parcels as $parcel) {
+            foreach ($parcel->getCowsInParcels() as $cows_in_parcel) {
+                if (isset($end_parcels[$parcel->getId()]) && $end_parcels[$parcel->getId()]["end_date"] && (!$cows_in_parcel->getEndDate() || ($cows_in_parcel->getEndDate() < $end_parcels[$parcel->getId()]["end_date"]))) {
+                    $end_parcels[$parcel->getId()."-".$parcel->getName()]["end_date"] = $cows_in_parcel->getEndDate();
+                } else {
+                    $end_parcels[$parcel->getId()."-".$parcel->getName()] = [
+                        "id" => $parcel->getId(),
+                        "name" => $parcel->getName(),
+                        "surface" => $parcel->getSurface(),
+                        "cowsNumber" => $parcel->getCowsNumber(),
+                        "end_date" => $cows_in_parcel->getEndDate(),
+                        "formattedLastDateWithCows" => $parcel->getFormattedLastDateWithCows()
+                    ];
+                }
+            }
+        }
+
+        uasort($end_parcels, function($a, $b) {
+            if (!$a["end_date"] || !$b["end_date"]) {
+                return -1;
+            }
+            if ($a["end_date"] == $b["end_date"]) {
+                return 0;
+            }
+            return ($a["end_date"] < $b["end_date"]) ? -1 : 1;
+        });
+
+        return $end_parcels;
     }
 }
