@@ -233,6 +233,6 @@ class Parcel
      */
     public function getCowsNumber()
     {
-        return $this->getCowsInParcels() ? $this->getCowsInParcels()->first()->getCowNumber() : 0;
+        return $this->getCowsInParcels() && $this->getCowsInParcels()->count() ? $this->getCowsInParcels()->first()->getCowNumber() : 0;
     }
 }

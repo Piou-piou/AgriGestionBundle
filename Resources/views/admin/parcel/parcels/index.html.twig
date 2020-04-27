@@ -51,6 +51,7 @@
                             <tr>
                                 <th>Désignation</th>
                                 <th>Surface (en hectares)</th>
+                                <th>Dernière sortie de parcelle</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -59,6 +60,7 @@
                                 <tr>
                                     <td>{{ parcel.name }}</td>
                                     <td>{{ parcel.surface }}</td>
+                                    <td>{{ parcel.getFormattedLastDateWithCows ? parcel.getFormattedLastDateWithCows : (parcel.getCowsNumber ? parcel.getCowsNumber ~ ' vaches dans la parcelle'  : 'jamais eu de  vache dans la parcelle') }}</td>
                                     <td>
                                         <a href="{{ path('agriparcel_admin_parcel_show', {"id": parcel.id}) }}">
                                             Voir
