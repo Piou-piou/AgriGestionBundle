@@ -52,6 +52,9 @@ class ParcelRepository extends EntityRepository
         }
 
         uasort($end_parcels, function($a, $b) {
+            if (!$a["number_cows_in_parcel"]) {
+                return 1;
+            }
             if (!$a["end_date"] || !$b["end_date"]) {
                 return 1;
             }
