@@ -17,7 +17,7 @@ class CowsApiController extends AbstractController
 {
 
     /**
-     * @Route("/api/cows/list", name="agriparcel_api_admin_cows_list", methods={"POST"})
+     * @Route("/cows/list", name="agriparcel_api_admin_cows_list", methods={"POST"})
      * @param EntityManagerInterface $em
      * @param SessionInterface $session
      * @param Api $api
@@ -35,7 +35,7 @@ class CowsApiController extends AbstractController
     }
 
     /**
-     * @Route("/api/cows/list-types", name="agriparcel_api_admin_cows_list_types", methods={"POST"})
+     * @Route("/cows/list-types", name="agriparcel_api_admin_cows_list_types", methods={"POST"})
      * @param EntityManagerInterface $em
      * @param SessionInterface $session
      * @param Api $api
@@ -51,7 +51,7 @@ class CowsApiController extends AbstractController
     }
 
     /**
-     * @Route("/api/cows/add", name="agriparcel_api_admin_cows_add", methods={"POST"})
+     * @Route("/cows/add", name="agriparcel_api_admin_cows_add", methods={"POST"})
      * @param EntityManagerInterface $em
      * @param SessionInterface $session
      * @param Api $api
@@ -93,7 +93,7 @@ class CowsApiController extends AbstractController
     }
 
     /**
-     * @Route("/api/cows/exit", name="agriparcel_api_admin_cows_exit", methods={"POST"})
+     * @Route("/cows/exit", name="agriparcel_api_admin_cows_exit", methods={"POST"})
      * @param EntityManagerInterface $em
      * @param SessionInterface $session
      * @param Api $api

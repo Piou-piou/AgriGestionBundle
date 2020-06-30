@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ParcelsApiController extends AbstractController
 {
     /**
-     * @Route("/api/parcels/list", name="agriparcel_api_admin_parcel_list", methods={"POST"})
+     * @Route("/parcels/list", name="agriparcel_api_admin_parcel_list", methods={"POST"})
      * @param EntityManagerInterface $em
      * @param SessionInterface $session
      * @param Api $api

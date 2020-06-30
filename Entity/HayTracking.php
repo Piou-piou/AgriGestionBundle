@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class HayTracking
 {
+    const TYPE = [
+        "HAY" => "Foins",
+        "REVIVAL" => "Regain",
+    ];
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
