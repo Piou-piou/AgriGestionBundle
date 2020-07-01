@@ -15,6 +15,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
  */
 class Parcel
 {
+    const TYPES = [
+        "HAY" => "Foins",
+        "COWS" => "Vaches",
+        "BOTH" => "Les deux",
+    ];
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -34,6 +40,12 @@ class Parcel
      * @Groups("main")
      */
     protected $surface;
+
+    /**
+     * @ORM\Column(name="`type`", type="string", length=255, nullable=true)
+     * @Groups("main")
+     */
+    protected $type;
 
     /**
      * @ORM\OneToMany(targetEntity="CowsInParcel", mappedBy="parcel")
@@ -120,6 +132,25 @@ class Parcel
     public function getSurface()
     {
         return $this->surface;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     * @return Parcel
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
     }
 
     /**
@@ -234,5 +265,16 @@ class Parcel
     public function getCowsNumber()
     {
         return $this->getCowsInParcels() && $this->getCowsInParcels()->count() ? $this->getCowsInParcels()->first()->getCowNumber() : 0;
+    }
+
+    public static function retrieveTypeLabels(): array
+    {
+        $types = [];
+
+        foreach (self::TYPES as $key => $value) {
+            $types[$value] = $key;
+        }
+
+        return $types;
     }
 }
