@@ -65,6 +65,7 @@ class HaystacksApiController extends AbstractController
         $parcel = $em->getRepository(Parcel::class)->findOneBy(["id" => $infos->parcel_id]);
 
         $haystack_exist = $em->getRepository(HayTracking::class)->findOneBy([
+            "parcel" => $parcel,
             "haystack_number" => $infos->haystack_number,
             "type" => $infos->type,
             "year" => date(("Y"))
