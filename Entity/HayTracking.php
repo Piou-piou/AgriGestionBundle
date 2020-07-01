@@ -3,6 +3,7 @@
 namespace PiouPiou\AgriGestionBundle\Entity;;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Entity\HayTracking
@@ -21,21 +22,25 @@ class HayTracking
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups("main")
      */
     protected $id;
 
     /**
      * @ORM\Column(name="`year`", type="integer")
+     * @Groups("main")
      */
     protected $year;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("main")
      */
     protected $haystack_number;
 
     /**
      * @ORM\Column(name="`type`", type="smallint")
+     * @Groups("main")
      */
     protected $type;
 

@@ -2,10 +2,8 @@
 
 namespace PiouPiou\AgriGestionBundle\Controller;
 
-use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
-use PiouPiou\AgriGestionBundle\Entity\CowsInParcel;
 use PiouPiou\AgriGestionBundle\Entity\HayTracking;
 use PiouPiou\AgriGestionBundle\Entity\Parcel;
 use PiouPiou\RibsAdminBundle\Service\Api;
@@ -26,11 +24,11 @@ class HaystacksApiController extends AbstractController
      */
     public function index(EntityManagerInterface $em, SessionInterface $session, Api $api): JsonResponse
     {
-        $haystack_in_parcels = $em->getRepository(CowsInParcel::class)->findBy(["end_date" => null]);
+        $haytrackings = $em->getRepository(HayTracking::class)->findAll();
 
         return new JsonResponse([
             "success" => true,
-            "haystack_in_parcel" => $api->serializeObject($haystack_in_parcels),
+            "haytrackings" => $api->serializeObject($haytrackings),
             "token" => $session->get("account_token")->getToken()
         ]);
     }
