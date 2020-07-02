@@ -47,6 +47,7 @@ class HayTracking
     /**
      * @ORM\ManyToOne(targetEntity="Parcel", inversedBy="hayTrackings")
      * @ORM\JoinColumn(name="parcel_id", referencedColumnName="id", nullable=false)
+     * @Groups("main")
      */
     protected $parcel;
 
@@ -174,6 +175,10 @@ class HayTracking
         return array('id', 'year', 'haystack_number', 'type');
     }
 
+    /**
+     * @Groups("main")
+     * @return string
+     */
     public function getFormattedHay()
     {
         return $this->getHaystackNumber() . ' bottes de ' . self::TYPE[$this->getType()];
