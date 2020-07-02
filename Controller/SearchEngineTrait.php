@@ -13,17 +13,21 @@ trait SearchEngineTrait
 
     private $searches;
 
+    private $search_null;
+
     /**
      * @param EntityManagerInterface $em
      * @param array $searches
      * @param string $class
+     * @param bool $search_null
      * @return mixed
      * @throws MappingException
      */
-    public function doSearch(EntityManagerInterface $em, array $searches, string $class)
+    public function doSearch(EntityManagerInterface $em, array $searches, string $class, bool $search_null = true)
     {
         $this->em = $em;
         $this->searches = $searches;
+        $this->search_null = $search_null;
         $entity_fields = $this->getEntityFields($class);
 
         /** @var QueryBuilder $query */
@@ -75,6 +79,11 @@ trait SearchEngineTrait
                 break;
         }
 
+        if ($this->search_null && $entity_field_infos["nullable"] && $entity_field_infos["nullable"] == true) {
+            $condition = "query." . $key . " IS NULL";
+            $query->orWhere($condition);
+        }
+
         return $query;
     }
 
@@ -107,6 +116,7 @@ trait SearchEngineTrait
         foreach ($entity_fields as $entity_field) {
             $fields[$entity_field] = [
                 "type" => $metadata->getTypeOfField($entity_field),
+                "nullable" => $metadata->isNullable($entity_field),
                 "entity_field_name" => null
             ];
         }
