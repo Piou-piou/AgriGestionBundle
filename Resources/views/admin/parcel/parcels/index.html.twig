@@ -30,6 +30,16 @@
                                 <input type="text" name="search[name]" id="search_name" value="{{ searches.name is defined ? searches.name : null }}" class="form-control">
                             </div>
                         </div>
+                        <div class="cxs-12 cmd-3 form-group">
+                            <div>
+                                <label for="search_type">Type</label>
+                                <select name="search[type]" id="search_type" class="form-control">
+                                    <option value="COWS" {% if searches.type is defined ? searches.type == "COWS" %}selected{% endif %}>Vaches</option>
+                                    <option value="HAY" {% if searches.type is defined ? searches.type == "HAY" %}selected{% endif %}>Foins</option>
+                                    <option value="BOTH" {% if searches.type is defined ? searches.type == "BOTH" %}selected{% endif %}>Les deux</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <footer>
