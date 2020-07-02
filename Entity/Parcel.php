@@ -277,4 +277,13 @@ class Parcel
 
         return $types;
     }
+
+    public function getFormattedType()
+    {
+        if ($this->getType()) {
+            return self::TYPES[$this->getType()];
+        }
+
+        return self::TYPES['BOTH'];
+    }
 }

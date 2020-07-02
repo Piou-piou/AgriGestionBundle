@@ -39,7 +39,7 @@ class HayTracking
     protected $haystack_number;
 
     /**
-     * @ORM\Column(name="`type`", type="smallint")
+     * @ORM\Column(name="`type`", type="string")
      * @Groups("main")
      */
     protected $type;
@@ -172,5 +172,10 @@ class HayTracking
     public function __sleep()
     {
         return array('id', 'year', 'haystack_number', 'type');
+    }
+
+    public function getFormattedHay()
+    {
+        return $this->getHaystackNumber() . ' bottes de ' . self::TYPE[$this->getType()];
     }
 }

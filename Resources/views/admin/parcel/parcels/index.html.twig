@@ -60,6 +60,7 @@
                         <thead>
                             <tr>
                                 <th>Désignation</th>
+                                <th>Type</th>
                                 <th>Surface (en hectares)</th>
                                 <th>Dernière sortie de parcelle</th>
                                 <th>Actions</th>
@@ -69,8 +70,21 @@
                             {% for parcel in parcels %}
                                 <tr>
                                     <td>{{ parcel.name }}</td>
+                                    <td>{{ parcel.getFormattedType }}</td>
                                     <td>{{ parcel.surface }}</td>
-                                    <td>{{ parcel.getFormattedLastDateWithCows ? parcel.getFormattedLastDateWithCows : (parcel.getCowsNumber ? parcel.getCowsNumber ~ ' vaches dans la parcelle'  : 'jamais eu de  vache dans la parcelle') }}</td>
+                                    <td>
+                                        {% if parcel.getFormattedLastDateWithCows or parcel.getCowsNumber %}
+                                            {{ parcel.getFormattedLastDateWithCows ? parcel.getFormattedLastDateWithCows : parcel.getCowsNumber ~ ' vaches dans la parcelle' }}
+                                        {% else %}
+                                            jamais eu de  vache dans la parcelle
+                                        {% endif %}
+
+                                        {% if parcel.hayTrackings and parcel.hayTrackings|length > 0 %}
+                                            {% for haytracking in parcel.hayTrackings  %}
+                                                <br>{{ haytracking.getFormattedHay }}
+                                            {% endfor %}
+                                        {% endif %}
+                                    </td>
                                     <td>
                                         <a href="{{ path('agriparcel_admin_parcel_show', {"id": parcel.id}) }}">
                                             Voir
