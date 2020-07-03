@@ -183,4 +183,14 @@ class HayTracking
     {
         return $this->getHaystackNumber() . ' bottes de ' . self::TYPE[$this->getType()];
     }
+
+    /**
+     * @return mixed
+     * @Groups("main")
+     */
+    public function getFormattedType()
+    {
+        $type = $this->getType() ?? 'BOTH';
+        return HayTracking::TYPE[$type];
+    }
 }

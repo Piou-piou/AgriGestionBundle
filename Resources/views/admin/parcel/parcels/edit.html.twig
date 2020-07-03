@@ -19,7 +19,7 @@
 
         <div class="page-title">
             <span>Parcelle</span>
-            <h3>{% if parcel.id %}Edition de {{ parcel.name }}{% else %}Création{% endif %}</h3>
+            <h3>{% if disabled_form %}Détails{% else %}{% if parcel.id %}Edition de {{ parcel.name }}{% else %}Création{% endif %}{% endif %}</h3>
         </div>
 
         <div class="row">
@@ -43,6 +43,74 @@
                             {{ form_row(form.type) }}
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="cxs-12">
+                <div class="block">
+                    <header>
+                        <h5>Historique des vaches</h5>
+                    </header>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Entrées le</th>
+                                <th>Sorties le</th>
+                                <th>Type d'occupation</th>
+                                <th>Nombre de vaches</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cowsInParcel in parcel.cowsInParcels %}
+                                <tr>
+                                    <td>{{ cowsInParcel.startDate|date('d/m/Y') }}</td>
+                                    <td>{{ cowsInParcel.endDate|date('d/m/Y') }}</td>
+                                    <td>{{ cowsInParcel.getFormattedType }}</td>
+                                    <td>{{ cowsInParcel.cowNumber }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="7" class="text-center">Aucune entrée de vache trouvée</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="cxs-12">
+                <div class="block">
+                    <header>
+                        <h5>Historique des foins</h5>
+                    </header>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Année</th>
+                                <th>Type de fauche</th>
+                                <th>Nombre de bottes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for haytracking in parcel.hayTrackings %}
+                                <tr>
+                                    <td>{{ haytracking.year }}</td>
+                                    <td>{{ haytracking.getFormattedType }}</td>
+                                    <td>{{ haytracking.haystackNumber }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="7" class="text-center">Aucune fauche trouvée</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
