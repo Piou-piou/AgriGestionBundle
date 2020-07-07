@@ -4,7 +4,6 @@ namespace PiouPiou\AgriGestionBundle\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
-use PiouPiou\AgriGestionBundle\Entity\HayTracking;
 use PiouPiou\AgriGestionBundle\Entity\Parcel;
 use PiouPiou\RibsAdminBundle\Service\Api;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -50,7 +49,7 @@ class ParcelsApiController extends AbstractController
     }
 
     /**
-     * @Route("/parcels/add", name="agriparcel_api_admin_haystack_add", methods={"POST"})
+     * @Route("/parcels/add", name="agriparcel_api_admin_parcel_add", methods={"POST"})
      * @param EntityManagerInterface $em
      * @param SessionInterface $session
      * @param Api $api

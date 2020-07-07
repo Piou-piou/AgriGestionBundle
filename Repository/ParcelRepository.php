@@ -34,7 +34,10 @@ class ParcelRepository extends EntityRepository
                             "cowsNumber" => $parcel->getCowsNumber(),
                             "end_date" => $cows_in_parcel->getEndDate(),
                             "formattedLastDateWithCows" => $parcel->getFormattedLastDateWithCows(),
-                            "number_cows_in_parcel" => $parcel->getCowsInParcels()->count()
+                            "number_cows_in_parcel" => $parcel->getCowsInParcels()->count(),
+                            "type" => $parcel->getType(),
+                            "formatted_type" => $parcel->getFormattedType(),
+                            "hay_trackings" => $parcel->getFormattedHaytrackings(),
                         ];
                     }
                 }
@@ -46,7 +49,10 @@ class ParcelRepository extends EntityRepository
                     "cowsNumber" => $parcel->getCowsNumber(),
                     "end_date" => null,
                     "formattedLastDateWithCows" => $parcel->getFormattedLastDateWithCows(),
-                    "number_cows_in_parcel" => $parcel->getCowsInParcels()->count()
+                    "number_cows_in_parcel" => $parcel->getCowsInParcels()->count(),
+                    "type" => $parcel->getType(),
+                    "formatted_type" => $parcel->getFormattedType(),
+                    "hay_trackings" => $parcel->getFormattedHaytrackings(),
                 ];
             }
         }

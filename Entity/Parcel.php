@@ -267,6 +267,16 @@ class Parcel
         return $this->getCowsInParcels() && $this->getCowsInParcels()->count() ? $this->getCowsInParcels()->first()->getCowNumber() : 0;
     }
 
+    public function getFormattedHaytrackings()
+    {
+        $haytrackings = [];
+        /** @var HayTracking $haytracking */
+        foreach ($this->getHayTrackings() as $haytracking) {
+            $haytrackings[] = $haytracking->getYear() . " : " . $haytracking->gethaystackNumber() . " bottes de " . $haytracking->getFormattedType();
+        }
+        return $haytrackings;
+    }
+
     public static function retrieveTypeLabels(): array
     {
         $types = [];
