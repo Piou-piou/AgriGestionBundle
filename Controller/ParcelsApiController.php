@@ -49,14 +49,14 @@ class ParcelsApiController extends AbstractController
     }
 
     /**
-     * @Route("/parcels/add", name="agriparcel_api_admin_parcel_add", methods={"POST"})
+     * @Route("/parcels/edit", name="agriparcel_api_admin_parcel_edit", methods={"POST"})
      * @param EntityManagerInterface $em
      * @param SessionInterface $session
      * @param Api $api
      * @return JsonResponse
      * @throws Exception
      */
-    public function add(EntityManagerInterface $em, SessionInterface $session, Api $api): JsonResponse
+    public function edit(EntityManagerInterface $em, SessionInterface $session, Api $api): JsonResponse
     {
         $infos = $session->get("jwt_infos");
 
@@ -64,7 +64,7 @@ class ParcelsApiController extends AbstractController
             "name" => $infos->name,
         ]);
 
-        if ($parcel) {
+        if ($parcel && $infos->id && $parcel->getId() !== $infos->id) {
             return new JsonResponse([
                 "success" => false,
                 "error_message" => "Cette parcelle existe déjà",
@@ -72,7 +72,12 @@ class ParcelsApiController extends AbstractController
             ]);
         }
 
-        $parcel = new Parcel();
+        if ($infos->id) {
+            $parcel = $em->getRepository(Parcel::class)->find($infos->id);
+        } else {
+            $parcel = new Parcel();
+        }
+
         $parcel->setName($infos->name);
         $parcel->setType($infos->type);
         $parcel->setSurface($infos->surface);
@@ -81,7 +86,35 @@ class ParcelsApiController extends AbstractController
 
         return new JsonResponse([
             "success" => true,
-            "success_message" => "La parcelle : " .$parcel->getName()." a été créée",
+            "success_message" => "La parcelle : " .$parcel->getName()." ". ($infos->id ? "a été éditée" : "a été créée"),
+            "token" => $session->get("account_token")->getToken()
+        ]);
+    }
+
+    /**
+     * @Route("/parcels/show", name="agriparcel_api_admin_parcel_show", methods={"POST"})
+     * @param EntityManagerInterface $em
+     * @param SessionInterface $session
+     * @param Api $api
+     * @return JsonResponse
+     */
+    public function show(EntityManagerInterface $em, SessionInterface $session, Api $api)
+    {
+        $infos = $session->get("jwt_infos");
+
+        $parcel = $em->getRepository(Parcel::class)->find((int)$infos->id);
+
+        if ($parcel) {
+            return new JsonResponse([
+                "success" => true,
+                "parcel" => $api->serializeObject($parcel),
+                "token" => $session->get("account_token")->getToken()
+            ]);
+        }
+
+        return new JsonResponse([
+            "success" => false,
+            "error_message" => "La parcelle demandée n'existe plus",
             "token" => $session->get("account_token")->getToken()
         ]);
     }
