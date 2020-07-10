@@ -8,14 +8,22 @@ use PiouPiou\AgriGestionBundle\Entity\Parcel;
 class ParcelRepository extends EntityRepository
 {
     /**
+     * @param string|null $type
      * @return array
      * @throws \Exception
      */
-    public function findByOldEndDate()
+    public function findByOldEndDate(?string $type)
     {
+        $request = "";
+        if ($type) {
+            $request = " WHERE p.type = :type";
+        }
         $query = $this->getEntityManager()->createQuery("
-            SELECT p FROM AgriGestionBundle:Parcel p
-        ");
+            SELECT p FROM AgriGestionBundle:Parcel p ".$request
+        );
+        if ($type) {
+            $query->setParameter("type", $type, \PDO::PARAM_STR);
+        }
 
         $end_parcels = [];
         $parcels = $query->getResult();

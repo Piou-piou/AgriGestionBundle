@@ -23,7 +23,9 @@ class ParcelsApiController extends AbstractController
      */
     public function list(EntityManagerInterface $em, SessionInterface $session, Api $api): JsonResponse
     {
-        $parcels = $em->getRepository(Parcel::class)->findByOldEndDate();
+        $infos = $session->get("jwt_infos");
+        $type = $infos->type ?? null;
+        $parcels = $em->getRepository(Parcel::class)->findByOldEndDate($type);
 
         return new JsonResponse([
             "success" => true,
